@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Sink` trait in crate `btls`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Sink">
+
+    <title>btls::test::Sink - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>btls</a>::<wbr><a href='index.html'>test</a></p><script>window.sidebarCurrent = {name: 'Sink', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>btls</a>::<wbr><a href='index.html'>test</a>::<wbr><a class='trait' href=''>Sink</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/btls/utils/sink.rs.html#5-296' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait Sink {
+    fn <a href='#tymethod.write_slice' class='fnname'>write_slice</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;;
+    fn <a href='#tymethod._alter' class='fnname'>_alter</a>(&amp;mut self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>);
+    fn <a href='#tymethod._readback' class='fnname'>_readback</a>(&amp;self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>;
+    fn <a href='#tymethod.written' class='fnname'>written</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>;
+    fn <a href='#tymethod._pop' class='fnname'>_pop</a>(&amp;mut self, amount: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>);
+    fn <a href='#tymethod.callback_after' class='fnname'>callback_after</a>(&amp;self, marker: <a class='struct' href='../../btls/test/struct.SinkMarker.html' title='btls::test::SinkMarker'>SinkMarker</a>, cb: &amp;mut <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html' title='core::ops::FnMut'>FnMut</a>(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>);
+
+    fn <a href='#method.write_u8' class='fnname'>write_u8</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; { ... }
+    fn <a href='#method.write_u16' class='fnname'>write_u16</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; { ... }
+    fn <a href='#method.write_u24' class='fnname'>write_u24</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; { ... }
+    fn <a href='#method.write_u32' class='fnname'>write_u32</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; { ... }
+    fn <a href='#method.write_u64' class='fnname'>write_u64</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; { ... }
+    fn <a href='#method.alter_u8' class='fnname'>alter_u8</a>(&amp;mut self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; { ... }
+    fn <a href='#method.alter_u16' class='fnname'>alter_u16</a>(&amp;mut self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; { ... }
+    fn <a href='#method.alter_u24' class='fnname'>alter_u24</a>(&amp;mut self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; { ... }
+    fn <a href='#method.readback_u24' class='fnname'>readback_u24</a>(&amp;self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; { ... }
+    fn <a href='#method.marker_posonly' class='fnname'>marker_posonly</a>(&amp;self) -&gt; <a class='struct' href='../../btls/test/struct.SinkMarker.html' title='btls::test::SinkMarker'>SinkMarker</a> { ... }
+    fn <a href='#method.vector_fn' class='fnname'>vector_fn</a>&lt;'a, F&gt;(&amp;'a mut self, length: <a class='enum' href='../../btls/test/enum.Length.html' title='btls::test::Length'>Length</a>, cb: F) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; <span class='where'>where Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>, F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html' title='core::ops::FnMut'>FnMut</a>(&amp;mut Self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</span> { ... }
+    fn <a href='#method.asn1_fn' class='fnname'>asn1_fn</a>&lt;'a, F&gt;(&amp;'a mut self, tag: <a class='enum' href='../../btls/error/enum.Asn1Tag.html' title='btls::error::Asn1Tag'>Asn1Tag</a>, cb: F) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; <span class='where'>where Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>, F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html' title='core::ops::FnMut'>FnMut</a>(&amp;mut Self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</span> { ... }
+}</pre><div class='docblock'><p>Sink that consumes raw byte data.</p>
+</div>
+            <h2 id='required-methods'>Required Methods</h2>
+            <div class='methods'>
+        <h3 id='tymethod.write_slice' class='method stab '><span id='write_slice.v' class='invisible'><code>fn <a href='#tymethod.write_slice' class='fnname'>write_slice</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h3><div class='docblock'><p>Append a slice of data into sink.</p>
+
+<h1 id='parameters' class='section-header'><a href='#parameters'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to write to.</li>
+<li><code>data</code>: The data to write.</li>
+</ul>
+
+<h1 id='failures' class='section-header'><a href='#failures'>Failures:</a></h1>
+<ul>
+<li>If the write causes the internal capacity of the sink to be exceeded, fails with <code>()</code>.</li>
+</ul>
+</div><h3 id='tymethod._alter' class='method stab '><span id='_alter.v' class='invisible'><code>fn <a href='#tymethod._alter' class='fnname'>_alter</a>(&amp;mut self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>)</code></span></h3><div class='docblock'><p>Alter past-written byte in the sink.</p>
+
+<h1 id='parameters-1' class='section-header'><a href='#parameters-1'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to alter the data in.</li>
+<li><code>ptr</code>: Offset to the data to alter.</li>
+<li><code>data</code>: The new value for byte pointed to.</li>
+</ul>
+</div><h3 id='tymethod._readback' class='method stab '><span id='_readback.v' class='invisible'><code>fn <a href='#tymethod._readback' class='fnname'>_readback</a>(&amp;self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></span></h3><div class='docblock'><p>Readback past-written byte in the sink.</p>
+
+<h1 id='parameters-2' class='section-header'><a href='#parameters-2'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to readback the data in.</li>
+<li><code>ptr</code>: Offset to the data to read.</li>
+</ul>
+
+<h1 id='return-value' class='section-header'><a href='#return-value'>Return value:</a></h1>
+<ul>
+<li>The readback bytes.</li>
+</ul>
+</div><h3 id='tymethod.written' class='method stab '><span id='written.v' class='invisible'><code>fn <a href='#tymethod.written' class='fnname'>written</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a></code></span></h3><div class='docblock'><p>Get number of bytes written so far.</p>
+
+<h1 id='parameters-3' class='section-header'><a href='#parameters-3'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to interrogate.</li>
+</ul>
+
+<h1 id='returns' class='section-header'><a href='#returns'>Returns:</a></h1>
+<ul>
+<li>The number of bytes written into sink so far.</li>
+</ul>
+</div><h3 id='tymethod._pop' class='method stab '><span id='_pop.v' class='invisible'><code>fn <a href='#tymethod._pop' class='fnname'>_pop</a>(&amp;mut self, amount: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></h3><div class='docblock'><p>Pop specified amount of data from the end.</p>
+
+<h1 id='parameters-4' class='section-header'><a href='#parameters-4'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to manipulate.</li>
+<li><code>amount</code>: The amount of data to pop.</li>
+</ul>
+</div><h3 id='tymethod.callback_after' class='method stab '><span id='callback_after.v' class='invisible'><code>fn <a href='#tymethod.callback_after' class='fnname'>callback_after</a>(&amp;self, marker: <a class='struct' href='../../btls/test/struct.SinkMarker.html' title='btls::test::SinkMarker'>SinkMarker</a>, cb: &amp;mut <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html' title='core::ops::FnMut'>FnMut</a>(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>)</code></span></h3><div class='docblock'><p>Get a callback for part after marker.</p>
+
+<h1 id='parameters-5' class='section-header'><a href='#parameters-5'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to get data for.</li>
+<li><code>marker</code>: The marker.</li>
+<li><code>cb</code>: The callback.</li>
+</ul>
+</div></div>
+            <h2 id='provided-methods'>Provided Methods</h2>
+            <div class='methods'>
+        <h3 id='method.write_u8' class='method stab '><span id='write_u8.v' class='invisible'><code>fn <a href='#method.write_u8' class='fnname'>write_u8</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h3><div class='docblock'><p>Write a big-endian u8 into sink.</p>
+
+<h1 id='parameters-6' class='section-header'><a href='#parameters-6'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to write to.</li>
+<li><code>data</code>: The data to write.</li>
+</ul>
+
+<h1 id='failures-1' class='section-header'><a href='#failures-1'>Failures:</a></h1>
+<ul>
+<li>If the write causes the internal capacity of the sink to be exceeded, fails with <code>()</code>.</li>
+</ul>
+</div><h3 id='method.write_u16' class='method stab '><span id='write_u16.v' class='invisible'><code>fn <a href='#method.write_u16' class='fnname'>write_u16</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h3><div class='docblock'><p>Write a big-endian u16 into sink.</p>
+
+<h1 id='parameters-7' class='section-header'><a href='#parameters-7'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to write to.</li>
+<li><code>data</code>: The data to write.</li>
+</ul>
+
+<h1 id='failures-2' class='section-header'><a href='#failures-2'>Failures:</a></h1>
+<ul>
+<li>If the write causes the internal capacity of the sink to be exceeded, fails with <code>()</code>.</li>
+</ul>
+</div><h3 id='method.write_u24' class='method stab '><span id='write_u24.v' class='invisible'><code>fn <a href='#method.write_u24' class='fnname'>write_u24</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h3><div class='docblock'><p>Write a big-endian u24 into sink.</p>
+
+<h1 id='parameters-8' class='section-header'><a href='#parameters-8'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to write to.</li>
+<li><code>data</code>: The data to write.</li>
+</ul>
+
+<h1 id='failures-3' class='section-header'><a href='#failures-3'>Failures:</a></h1>
+<ul>
+<li>If the write causes the internal capacity of the sink to be exceeded, fails with <code>()</code>.</li>
+</ul>
+</div><h3 id='method.write_u32' class='method stab '><span id='write_u32.v' class='invisible'><code>fn <a href='#method.write_u32' class='fnname'>write_u32</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h3><div class='docblock'><p>Write a big-endian u32 into sink.</p>
+
+<h1 id='parameters-9' class='section-header'><a href='#parameters-9'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to write to.</li>
+<li><code>data</code>: The data to write.</li>
+</ul>
+
+<h1 id='failures-4' class='section-header'><a href='#failures-4'>Failures:</a></h1>
+<ul>
+<li>If the write causes the internal capacity of the sink to be exceeded, fails with <code>()</code>.</li>
+</ul>
+</div><h3 id='method.write_u64' class='method stab '><span id='write_u64.v' class='invisible'><code>fn <a href='#method.write_u64' class='fnname'>write_u64</a>(&amp;mut self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h3><div class='docblock'><p>Write a big-endian u64 into sink.</p>
+
+<h1 id='parameters-10' class='section-header'><a href='#parameters-10'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to write to.</li>
+<li><code>data</code>: The data to write.</li>
+</ul>
+
+<h1 id='failures-5' class='section-header'><a href='#failures-5'>Failures:</a></h1>
+<ul>
+<li>If the write causes the internal capacity of the sink to be exceeded, fails with <code>()</code>.</li>
+</ul>
+</div><h3 id='method.alter_u8' class='method stab '><span id='alter_u8.v' class='invisible'><code>fn <a href='#method.alter_u8' class='fnname'>alter_u8</a>(&amp;mut self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h3><div class='docblock'><p>Alter past-written u8 in the sink.</p>
+
+<h1 id='parameters-11' class='section-header'><a href='#parameters-11'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to alter the data in.</li>
+<li><code>ptr</code>: Offset to the data to alter.</li>
+<li><code>data</code>: The new value for data pointed to.</li>
+</ul>
+
+<h1 id='failures-6' class='section-header'><a href='#failures-6'>Failures:</a></h1>
+<ul>
+<li>If the pointer is out of existing written range, fails with <code>()</code>.</li>
+</ul>
+</div><h3 id='method.alter_u16' class='method stab '><span id='alter_u16.v' class='invisible'><code>fn <a href='#method.alter_u16' class='fnname'>alter_u16</a>(&amp;mut self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h3><div class='docblock'><p>Alter past-written u16 in the sink.</p>
+
+<h1 id='parameters-12' class='section-header'><a href='#parameters-12'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to alter the data in.</li>
+<li><code>ptr</code>: Offset to the data to alter.</li>
+<li><code>data</code>: The new value for data pointed to.</li>
+</ul>
+
+<h1 id='failures-7' class='section-header'><a href='#failures-7'>Failures:</a></h1>
+<ul>
+<li>If the pointer is out of existing written range, fails with <code>()</code>.</li>
+</ul>
+</div><h3 id='method.alter_u24' class='method stab '><span id='alter_u24.v' class='invisible'><code>fn <a href='#method.alter_u24' class='fnname'>alter_u24</a>(&amp;mut self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h3><div class='docblock'><p>Alter past-written u24 in the sink.</p>
+
+<h1 id='parameters-13' class='section-header'><a href='#parameters-13'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to alter the data in.</li>
+<li><code>ptr</code>: Offset to the data to alter.</li>
+<li><code>data</code>: The new value for data pointed to.</li>
+</ul>
+
+<h1 id='failures-8' class='section-header'><a href='#failures-8'>Failures:</a></h1>
+<ul>
+<li>If the pointer is out of existing written range, fails with <code>()</code>.</li>
+</ul>
+</div><h3 id='method.readback_u24' class='method stab '><span id='readback_u24.v' class='invisible'><code>fn <a href='#method.readback_u24' class='fnname'>readback_u24</a>(&amp;self, ptr: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</code></span></h3><div class='docblock'><p>Readback past-written u24 in the sink.</p>
+
+<h1 id='parameters-14' class='section-header'><a href='#parameters-14'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to alter the data in.</li>
+<li><code>ptr</code>: Offset to the data to alter.</li>
+</ul>
+
+<h1 id='return-value-1' class='section-header'><a href='#return-value-1'>Return value:</a></h1>
+<ul>
+<li>the value read back.</li>
+</ul>
+
+<h1 id='failures-9' class='section-header'><a href='#failures-9'>Failures:</a></h1>
+<ul>
+<li>If the pointer is out of existing written range, fails with <code>()</code>.</li>
+</ul>
+</div><h3 id='method.marker_posonly' class='method stab '><span id='marker_posonly.v' class='invisible'><code>fn <a href='#method.marker_posonly' class='fnname'>marker_posonly</a>(&amp;self) -&gt; <a class='struct' href='../../btls/test/struct.SinkMarker.html' title='btls::test::SinkMarker'>SinkMarker</a></code></span></h3><div class='docblock'><p>Get a marker.</p>
+
+<h1 id='parameters-15' class='section-header'><a href='#parameters-15'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to get marker for.</li>
+</ul>
+</div><h3 id='method.vector_fn' class='method stab '><span id='vector_fn.v' class='invisible'><code>fn <a href='#method.vector_fn' class='fnname'>vector_fn</a>&lt;'a, F&gt;(&amp;'a mut self, length: <a class='enum' href='../../btls/test/enum.Length.html' title='btls::test::Length'>Length</a>, cb: F) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; <span class='where'>where Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>, F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html' title='core::ops::FnMut'>FnMut</a>(&amp;mut Self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</span></code></span></h3><div class='docblock'><p>Write size marker of specified size, with data from closure.</p>
+
+<h1 id='parameters-16' class='section-header'><a href='#parameters-16'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to write a subslice to.</li>
+<li><code>length</code>: The type of length to write.</li>
+<li><code>cb</code>: The closure to get the data from.</li>
+</ul>
+
+<h1 id='failures-10' class='section-header'><a href='#failures-10'>Failures:</a></h1>
+<ul>
+<li>If the write causes the internal capacity of the sink to be exceeded, fails with <code>()</code>.</li>
+<li>If the write is too large for vector size, fails with <code>()</code>.</li>
+</ul>
+</div><h3 id='method.asn1_fn' class='method stab '><span id='asn1_fn.v' class='invisible'><code>fn <a href='#method.asn1_fn' class='fnname'>asn1_fn</a>&lt;'a, F&gt;(&amp;'a mut self, tag: <a class='enum' href='../../btls/error/enum.Asn1Tag.html' title='btls::error::Asn1Tag'>Asn1Tag</a>, cb: F) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt; <span class='where'>where Self: <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a>, F: <a class='trait' href='https://doc.rust-lang.org/nightly/core/ops/trait.FnMut.html' title='core::ops::FnMut'>FnMut</a>(&amp;mut Self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;</span></code></span></h3><div class='docblock'><p>Write ASN.1 TLV, with data from callback.</p>
+
+<h1 id='parameters-17' class='section-header'><a href='#parameters-17'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The sink to write a subslice to.</li>
+<li><code>tag</code>: The ASN.1 tag to use.</li>
+<li><code>cb</code>: The callback to obtain the data from.</li>
+</ul>
+
+<h1 id='failures-11' class='section-header'><a href='#failures-11'>Failures:</a></h1>
+<ul>
+<li>If the write causes the internal capacity of the sink to be exceeded, fails with <code>()</code>.</li>
+<li>If the tag is bigger than 2<sup>63,</sup> fails with <code>()</code>.</li>
+</ul>
+</div></div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><code>impl Sink for <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;</code></li>
+</ul><script type="text/javascript" async
+                         src="../../implementors/btls/test/trait.Sink.js">
+                 </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "btls";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `TlsFailure` enum in crate `btls`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, TlsFailure">
+
+    <title>btls::error::TlsFailure - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>btls</a>::<wbr><a href='index.html'>error</a></p><script>window.sidebarCurrent = {name: 'TlsFailure', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>btls</a>::<wbr><a href='index.html'>error</a>::<wbr><a class='enum' href=''>TlsFailure</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/btls/common/tlserr.rs.html#114-382' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum TlsFailure {
+    UnsupportedVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ServerHelloNotAlignedTls13,
+    ServerHelloDoneNotEmpty(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    FinishedNotAligned,
+    InterlockSignatureMissing,
+    KeyUpdateNotAligned,
+    KeyUpdateBadLength(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    EmptyHandshakeMessage,
+    CcsInMiddleOfHandshakeMessage,
+    InvalidCcs,
+    UnexpectedRtype(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>),
+    UnexpectedHandshakeMessage(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,&nbsp;<a class='enum' href='../../btls/error/enum.HandshakeState.html' title='btls::error::HandshakeState'>HandshakeState</a>),
+    UnexpectedCcs(<a class='enum' href='../../btls/error/enum.HandshakeState.html' title='btls::error::HandshakeState'>HandshakeState</a>),
+    NoNontrivialKex,
+    MaxPrfSizeTooSmall,
+    HsMsgBuffer(<a class='enum' href='../../btls/test/enum.HsBufferError.html' title='btls::test::HsBufferError'>HsBufferError</a>),
+    ClientHelloTooLong(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    AcmeValidationDone,
+    TxSerializationOverflow,
+    TxTooBig(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    TxSerializeOverflow,
+    NoCertSelectorFuture,
+    CertSelectorFutureError,
+    NoCertificateAvailable(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    EmptyCertChain(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    EmptyOcsp,
+    NoSignatureFuture,
+    SignatureFutureError,
+    CantSignTbs,
+    CantRestoreSke,
+    CantObtainSignatureTbs,
+    SctListEmpty,
+    ServerNameExpectList,
+    ServerNameExpectEntryType,
+    ServerNameExpectEntryContent,
+    EmptyHostname,
+    TooLongHostname,
+    BogusHostname,
+    AlpnExpectedList,
+    AlpnExpectedEntry,
+    EmptyAlpn,
+    BogusAlpn,
+    AlpnNoOverlap,
+    SupGrpExpectedList,
+    SupGrpExpectedGroup,
+    SigAlgoExpectedList,
+    SigAlgoExpectedAlgorithm,
+    KeyShareExpectedList,
+    KeyShareExpectedGroup,
+    KeyShareExpectedContent,
+    CkeCurveError(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='enum' href='../../btls/error/enum.KeyAgreementError.html' title='btls::error::KeyAgreementError'>KeyAgreementError</a>),
+    ChBogusTlsVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    KeyShareCurveError(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='enum' href='../../btls/error/enum.KeyAgreementError.html' title='btls::error::KeyAgreementError'>KeyAgreementError</a>),
+    DhKeypairGenError(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='enum' href='../../btls/error/enum.KeyAgreementError.html' title='btls::error::KeyAgreementError'>KeyAgreementError</a>),
+    GenChalCertFailed(<a class='enum' href='../../btls/error/enum.AcmeCertificateCreateError.html' title='btls::error::AcmeCertificateCreateError'>AcmeCertificateCreateError</a>),
+    KeyShareDupGroup(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    InterlockOcsp(<a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a>),
+    CantGetOwnDhPubKey(<a class='enum' href='../../btls/error/enum.KeyAgreementError.html' title='btls::error::KeyAgreementError'>KeyAgreementError</a>),
+    NoMutualCiphersuites,
+    NoMutualGroups,
+    NoKeyshareInTls13,
+    ChExpectedVersion,
+    ChExpectedRandom,
+    ChExpectedSessionId,
+    ChExpectedCiphersuites,
+    ChExpectedCompressionMethods,
+    ChExpectedExtensions,
+    ChExpectedExtensionKind,
+    ChExpectedExtensionPayload(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ChUnsupportedClientVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ChBogusCompressionMethods(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;),
+    ChDuplicateExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ChJunkAfterExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ChSsl3NotSupported,
+    ChTls10NotSupported,
+    ChTls11NotSupported,
+    SupVerJunkAfterList,
+    SupVerExpectedVersionList,
+    SupVerExpectedVersion,
+    NoMutualTlsVersion,
+    ChExpectedCiphersuite,
+    InapporiateFallback,
+    Ciphersuite0,
+    NoMutualCompression,
+    ChJunkAfterEnd,
+    NoMutualCertificateType,
+    SCertTypeExpectedList,
+    SCertTypeExpectedFormat,
+    KeyShareNotAllowedInTls12,
+    ChRenegotiationAttackDetected,
+    ShRenegotiationAttackDetected,
+    Tls13RequresKeyShare,
+    KeySharesNotSubsetSupGrp,
+    ClientVulernableTHS,
+    ClientVulernableRenego,
+    ChDoubleRestart,
+    CkeExpectedPublic,
+    FinishedMacFailed,
+    CantExtractSpki(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>),
+    InterlockCertificate(<a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a>),
+    NullExtractor,
+    BadTls12MsSize,
+    KeyblockTooSmall,
+    MasterblockTooSmall,
+    CantCreateProtector,
+    CantCreateDeprotector,
+    TextOutputTooSmall,
+    ConcatenationNotUtf8,
+    InterlockNontrivalKex,
+    WrongClientRandomLength(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    WrongServerRandomLength(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    TlsExtractorsRequireEmsOrTls13,
+    Tls13ExporterLabelTooLong,
+    Tls13ExporterContextTooLong,
+    Tls13ExporterOutputTooLong,
+    CantLockSession,
+    CvSignatureFailed,
+    SctRequiredForCert,
+    CantParseIssuerCertificate(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>),
+    CkeWrongNumberOfShares(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    HrrExpectedVersion,
+    HrrBogusTlsVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    HrrTlsVersionUnsupported(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    HrrExpectedExtensionKind,
+    HrrExpectedExtensionPayload(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    HrrDuplicateExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    HrrExpectedKeyShare,
+    HrrExpectedCookie,
+    HrrUnsupportedExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    HrrExpectedExtensions,
+    HrrExpectedEnd,
+    HrrBogusRestart,
+    HrrAlreadyHadShare(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    HrrBogusCurve(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    AlpnExpectedLength1,
+    AlpnExpectedLength2,
+    AlpnEmptyProtocol,
+    AlpnRawLengthTooBig,
+    AlpnExpectedLen1Val(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    AlpnExpectedLen2Val(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    AlpnNonUtf8Protocol,
+    AlpnBogusProtocol,
+    SKeyShareExpectedGroup,
+    SKeyShareExpectedKex,
+    KeyShareGroupDisagreement(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    KeyShareBogusGroup(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ShExpectedVersion,
+    ShSsl3NotSupported,
+    ShTls10NotSupported,
+    ShTls11NotSupported,
+    ShBogusVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ShUnsupportedTlsVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ShExpectedRandom,
+    ShBadRandomLength,
+    Tls13DowngradeAttack,
+    ShExpectedSessionId,
+    ShBogusCiphersuite(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ShExpectedCiphersuite,
+    ShBadTls12Cipher(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ShBadTls13Cipher(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ShExpectedCompression,
+    ShBogusCompression(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>),
+    ShExpectedExtensionKind,
+    ShExpectedExtensionPayload(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ShDuplicateExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    SctExpectedList,
+    SctExpectedEntry,
+    SCertTypeExpectedFormatE,
+    ShUnsupportedExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ShJunkAfterExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    ShExpectedExtensions,
+    ShExpectedEnd,
+    Tls13NoKeyShare,
+    ServerVulernableTHS,
+    ServerVulernableRenego,
+    CertRequiresOcsp,
+    CertRequiresSct,
+    SkeExpectedCurveType,
+    SkeBogusCurveType(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>),
+    SkeExpectedNamedcurve,
+    SkeBogusCurve(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    SkeExpectedPublic,
+    SkeCurveError(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='enum' href='../../btls/error/enum.KeyAgreementError.html' title='btls::error::KeyAgreementError'>KeyAgreementError</a>),
+    SkeExpectedAlgorithm,
+    SkeBogusSignatureAlgo(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    SkeExpectedSignature,
+    SkeExpectedEnd,
+    SkeSignatureFailed,
+    ServerKeyNotWhitelisted,
+    EECertParseError(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>),
+    SCertTypeBogusType(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>),
+    ServerChainEmpty,
+    EeCertificateEmpty,
+    CsBogusOcspType(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>),
+    CantExtractSct12(<a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a>),
+    OcspIncompleteCertificateChain,
+    InvalidOcsp(<a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a>),
+    CrExpectedContext,
+    CrContextMustBeEmpty,
+    CantExtractSct13(<a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a>),
+    CertificateValidationFailed(<a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a>),
+    CertExpectCertList,
+    CertExpectIntermeidate,
+    CertIntermediateEmpty,
+    CertExpectedContext,
+    CertExpectExtensionKind,
+    CertExpectExtionPayload(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    CertDuplicateExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    OcspExpectedType,
+    OcspExpectedContent,
+    SCertTypeInNotFirstCert,
+    CertUnsupportedExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    CertJunkAfterExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    CertExpectedExtensions,
+    CvExpectedAlgorithm,
+    CvBogusSignatureAlgo(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    CvExpectedSignature,
+    CvExpectedEnd,
+    CsExpectedStatusType,
+    CsExpectedResponse,
+    CsEmptyResponse,
+    EeExpectedExtensionKind,
+    EeExpectedExtensionPayload(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    EeDuplicateExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    EeUnsupportedExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    EeJunkAfterExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>),
+    EeExpectedExtensions,
+    EeExpectedEnd,
+    DeprotectionFailed,
+    AppdataBeforeFinished,
+    AppdataAfterEof,
+    RecvAppdataRQueueEof,
+    MaxRecordScratchOverflow,
+    TxHandshakeMsgOver16MB(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    FragmentTooBig(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    InvalidFragRtype(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>),
+    PacketLengthOutOfWhack(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    RecordTooBig(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    NoPacketToProcess,
+    ShortreadRecordHeader,
+    RxRecordTooBig(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    PacketLengthToSendOutOfWhack(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    ProtectingPaceketFailed,
+    TxQueueWriteFailed(<a class='enum' href='../../btls/error/enum.QueueWriteError.html' title='btls::error::QueueWriteError'>QueueWriteError</a>),
+    NormalClose,
+    ProtectingPaceketFailedZ,
+    ReadDiscardFailed(<a class='enum' href='../../btls/error/enum.QueueReadError.html' title='btls::error::QueueReadError'>QueueReadError</a>),
+    ValidationHandshakeDone,
+    NoRecordExpected,
+    UnknownIoException,
+    TxQueueEof,
+    TxQueueDiscard(<a class='enum' href='../../btls/error/enum.QueueReadError.html' title='btls::error::QueueReadError'>QueueReadError</a>),
+    RxQueueEof,
+    WQueueDataNotRead,
+    StreamReadOverflow,
+    NoTrustAnchors,
+    CantLockAcmeChallenges,
+    InternalConnection,
+    TlsSessionError,
+    IntErrNoIssuerSerial,
+    SctValidationFailed(<a class='enum' href='../../btls/error/enum.SctError.html' title='btls::error::SctError'>SctError</a>),
+    // some variants omitted
+}</pre><div class='docblock'><p>Failure in TLS library.</p>
+
+<p>This lists all the failures that can happen in TLS handshake and operation.</p>
+</div><h2 class='variants'>Variants</h2>
+<span id='variant.UnsupportedVersion' class='variant'><span id='UnsupportedVersion.v' class='invisible'><code>UnsupportedVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><div class='docblock'><p>Unsupported TLS version.</p>
+</div><span id='variant.ServerHelloNotAlignedTls13' class='variant'><span id='ServerHelloNotAlignedTls13.v' class='invisible'><code>ServerHelloNotAlignedTls13</code></span></span><div class='docblock'><p>ServerHello does not end last fragment it is in.</p>
+</div><span id='variant.ServerHelloDoneNotEmpty' class='variant'><span id='ServerHelloDoneNotEmpty.v' class='invisible'><code>ServerHelloDoneNotEmpty(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.FinishedNotAligned' class='variant'><span id='FinishedNotAligned.v' class='invisible'><code>FinishedNotAligned</code></span></span><span id='variant.InterlockSignatureMissing' class='variant'><span id='InterlockSignatureMissing.v' class='invisible'><code>InterlockSignatureMissing</code></span></span><span id='variant.KeyUpdateNotAligned' class='variant'><span id='KeyUpdateNotAligned.v' class='invisible'><code>KeyUpdateNotAligned</code></span></span><span id='variant.KeyUpdateBadLength' class='variant'><span id='KeyUpdateBadLength.v' class='invisible'><code>KeyUpdateBadLength(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.EmptyHandshakeMessage' class='variant'><span id='EmptyHandshakeMessage.v' class='invisible'><code>EmptyHandshakeMessage</code></span></span><span id='variant.CcsInMiddleOfHandshakeMessage' class='variant'><span id='CcsInMiddleOfHandshakeMessage.v' class='invisible'><code>CcsInMiddleOfHandshakeMessage</code></span></span><span id='variant.InvalidCcs' class='variant'><span id='InvalidCcs.v' class='invisible'><code>InvalidCcs</code></span></span><span id='variant.UnexpectedRtype' class='variant'><span id='UnexpectedRtype.v' class='invisible'><code>UnexpectedRtype(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>)</code></span></span><span id='variant.UnexpectedHandshakeMessage' class='variant'><span id='UnexpectedHandshakeMessage.v' class='invisible'><code>UnexpectedHandshakeMessage(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,&nbsp;<a class='enum' href='../../btls/error/enum.HandshakeState.html' title='btls::error::HandshakeState'>HandshakeState</a>)</code></span></span><span id='variant.UnexpectedCcs' class='variant'><span id='UnexpectedCcs.v' class='invisible'><code>UnexpectedCcs(<a class='enum' href='../../btls/error/enum.HandshakeState.html' title='btls::error::HandshakeState'>HandshakeState</a>)</code></span></span><span id='variant.NoNontrivialKex' class='variant'><span id='NoNontrivialKex.v' class='invisible'><code>NoNontrivialKex</code></span></span><span id='variant.MaxPrfSizeTooSmall' class='variant'><span id='MaxPrfSizeTooSmall.v' class='invisible'><code>MaxPrfSizeTooSmall</code></span></span><span id='variant.HsMsgBuffer' class='variant'><span id='HsMsgBuffer.v' class='invisible'><code>HsMsgBuffer(<a class='enum' href='../../btls/test/enum.HsBufferError.html' title='btls::test::HsBufferError'>HsBufferError</a>)</code></span></span><span id='variant.ClientHelloTooLong' class='variant'><span id='ClientHelloTooLong.v' class='invisible'><code>ClientHelloTooLong(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.AcmeValidationDone' class='variant'><span id='AcmeValidationDone.v' class='invisible'><code>AcmeValidationDone</code></span></span><span id='variant.TxSerializationOverflow' class='variant'><span id='TxSerializationOverflow.v' class='invisible'><code>TxSerializationOverflow</code></span></span><span id='variant.TxTooBig' class='variant'><span id='TxTooBig.v' class='invisible'><code>TxTooBig(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>)</code></span></span><span id='variant.TxSerializeOverflow' class='variant'><span id='TxSerializeOverflow.v' class='invisible'><code>TxSerializeOverflow</code></span></span><span id='variant.NoCertSelectorFuture' class='variant'><span id='NoCertSelectorFuture.v' class='invisible'><code>NoCertSelectorFuture</code></span></span><span id='variant.CertSelectorFutureError' class='variant'><span id='CertSelectorFutureError.v' class='invisible'><code>CertSelectorFutureError</code></span></span><span id='variant.NoCertificateAvailable' class='variant'><span id='NoCertificateAvailable.v' class='invisible'><code>NoCertificateAvailable(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>)</code></span></span><span id='variant.EmptyCertChain' class='variant'><span id='EmptyCertChain.v' class='invisible'><code>EmptyCertChain(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>)</code></span></span><span id='variant.EmptyOcsp' class='variant'><span id='EmptyOcsp.v' class='invisible'><code>EmptyOcsp</code></span></span><span id='variant.NoSignatureFuture' class='variant'><span id='NoSignatureFuture.v' class='invisible'><code>NoSignatureFuture</code></span></span><span id='variant.SignatureFutureError' class='variant'><span id='SignatureFutureError.v' class='invisible'><code>SignatureFutureError</code></span></span><span id='variant.CantSignTbs' class='variant'><span id='CantSignTbs.v' class='invisible'><code>CantSignTbs</code></span></span><span id='variant.CantRestoreSke' class='variant'><span id='CantRestoreSke.v' class='invisible'><code>CantRestoreSke</code></span></span><span id='variant.CantObtainSignatureTbs' class='variant'><span id='CantObtainSignatureTbs.v' class='invisible'><code>CantObtainSignatureTbs</code></span></span><span id='variant.SctListEmpty' class='variant'><span id='SctListEmpty.v' class='invisible'><code>SctListEmpty</code></span></span><span id='variant.ServerNameExpectList' class='variant'><span id='ServerNameExpectList.v' class='invisible'><code>ServerNameExpectList</code></span></span><span id='variant.ServerNameExpectEntryType' class='variant'><span id='ServerNameExpectEntryType.v' class='invisible'><code>ServerNameExpectEntryType</code></span></span><span id='variant.ServerNameExpectEntryContent' class='variant'><span id='ServerNameExpectEntryContent.v' class='invisible'><code>ServerNameExpectEntryContent</code></span></span><span id='variant.EmptyHostname' class='variant'><span id='EmptyHostname.v' class='invisible'><code>EmptyHostname</code></span></span><span id='variant.TooLongHostname' class='variant'><span id='TooLongHostname.v' class='invisible'><code>TooLongHostname</code></span></span><span id='variant.BogusHostname' class='variant'><span id='BogusHostname.v' class='invisible'><code>BogusHostname</code></span></span><span id='variant.AlpnExpectedList' class='variant'><span id='AlpnExpectedList.v' class='invisible'><code>AlpnExpectedList</code></span></span><span id='variant.AlpnExpectedEntry' class='variant'><span id='AlpnExpectedEntry.v' class='invisible'><code>AlpnExpectedEntry</code></span></span><span id='variant.EmptyAlpn' class='variant'><span id='EmptyAlpn.v' class='invisible'><code>EmptyAlpn</code></span></span><span id='variant.BogusAlpn' class='variant'><span id='BogusAlpn.v' class='invisible'><code>BogusAlpn</code></span></span><span id='variant.AlpnNoOverlap' class='variant'><span id='AlpnNoOverlap.v' class='invisible'><code>AlpnNoOverlap</code></span></span><span id='variant.SupGrpExpectedList' class='variant'><span id='SupGrpExpectedList.v' class='invisible'><code>SupGrpExpectedList</code></span></span><span id='variant.SupGrpExpectedGroup' class='variant'><span id='SupGrpExpectedGroup.v' class='invisible'><code>SupGrpExpectedGroup</code></span></span><span id='variant.SigAlgoExpectedList' class='variant'><span id='SigAlgoExpectedList.v' class='invisible'><code>SigAlgoExpectedList</code></span></span><span id='variant.SigAlgoExpectedAlgorithm' class='variant'><span id='SigAlgoExpectedAlgorithm.v' class='invisible'><code>SigAlgoExpectedAlgorithm</code></span></span><span id='variant.KeyShareExpectedList' class='variant'><span id='KeyShareExpectedList.v' class='invisible'><code>KeyShareExpectedList</code></span></span><span id='variant.KeyShareExpectedGroup' class='variant'><span id='KeyShareExpectedGroup.v' class='invisible'><code>KeyShareExpectedGroup</code></span></span><span id='variant.KeyShareExpectedContent' class='variant'><span id='KeyShareExpectedContent.v' class='invisible'><code>KeyShareExpectedContent</code></span></span><span id='variant.CkeCurveError' class='variant'><span id='CkeCurveError.v' class='invisible'><code>CkeCurveError(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='enum' href='../../btls/error/enum.KeyAgreementError.html' title='btls::error::KeyAgreementError'>KeyAgreementError</a>)</code></span></span><span id='variant.ChBogusTlsVersion' class='variant'><span id='ChBogusTlsVersion.v' class='invisible'><code>ChBogusTlsVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.KeyShareCurveError' class='variant'><span id='KeyShareCurveError.v' class='invisible'><code>KeyShareCurveError(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='enum' href='../../btls/error/enum.KeyAgreementError.html' title='btls::error::KeyAgreementError'>KeyAgreementError</a>)</code></span></span><span id='variant.DhKeypairGenError' class='variant'><span id='DhKeypairGenError.v' class='invisible'><code>DhKeypairGenError(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='enum' href='../../btls/error/enum.KeyAgreementError.html' title='btls::error::KeyAgreementError'>KeyAgreementError</a>)</code></span></span><span id='variant.GenChalCertFailed' class='variant'><span id='GenChalCertFailed.v' class='invisible'><code>GenChalCertFailed(<a class='enum' href='../../btls/error/enum.AcmeCertificateCreateError.html' title='btls::error::AcmeCertificateCreateError'>AcmeCertificateCreateError</a>)</code></span></span><span id='variant.KeyShareDupGroup' class='variant'><span id='KeyShareDupGroup.v' class='invisible'><code>KeyShareDupGroup(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.InterlockOcsp' class='variant'><span id='InterlockOcsp.v' class='invisible'><code>InterlockOcsp(<a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a>)</code></span></span><span id='variant.CantGetOwnDhPubKey' class='variant'><span id='CantGetOwnDhPubKey.v' class='invisible'><code>CantGetOwnDhPubKey(<a class='enum' href='../../btls/error/enum.KeyAgreementError.html' title='btls::error::KeyAgreementError'>KeyAgreementError</a>)</code></span></span><span id='variant.NoMutualCiphersuites' class='variant'><span id='NoMutualCiphersuites.v' class='invisible'><code>NoMutualCiphersuites</code></span></span><span id='variant.NoMutualGroups' class='variant'><span id='NoMutualGroups.v' class='invisible'><code>NoMutualGroups</code></span></span><span id='variant.NoKeyshareInTls13' class='variant'><span id='NoKeyshareInTls13.v' class='invisible'><code>NoKeyshareInTls13</code></span></span><span id='variant.ChExpectedVersion' class='variant'><span id='ChExpectedVersion.v' class='invisible'><code>ChExpectedVersion</code></span></span><span id='variant.ChExpectedRandom' class='variant'><span id='ChExpectedRandom.v' class='invisible'><code>ChExpectedRandom</code></span></span><span id='variant.ChExpectedSessionId' class='variant'><span id='ChExpectedSessionId.v' class='invisible'><code>ChExpectedSessionId</code></span></span><span id='variant.ChExpectedCiphersuites' class='variant'><span id='ChExpectedCiphersuites.v' class='invisible'><code>ChExpectedCiphersuites</code></span></span><span id='variant.ChExpectedCompressionMethods' class='variant'><span id='ChExpectedCompressionMethods.v' class='invisible'><code>ChExpectedCompressionMethods</code></span></span><span id='variant.ChExpectedExtensions' class='variant'><span id='ChExpectedExtensions.v' class='invisible'><code>ChExpectedExtensions</code></span></span><span id='variant.ChExpectedExtensionKind' class='variant'><span id='ChExpectedExtensionKind.v' class='invisible'><code>ChExpectedExtensionKind</code></span></span><span id='variant.ChExpectedExtensionPayload' class='variant'><span id='ChExpectedExtensionPayload.v' class='invisible'><code>ChExpectedExtensionPayload(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ChUnsupportedClientVersion' class='variant'><span id='ChUnsupportedClientVersion.v' class='invisible'><code>ChUnsupportedClientVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ChBogusCompressionMethods' class='variant'><span id='ChBogusCompressionMethods.v' class='invisible'><code>ChBogusCompressionMethods(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;)</code></span></span><span id='variant.ChDuplicateExtension' class='variant'><span id='ChDuplicateExtension.v' class='invisible'><code>ChDuplicateExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ChJunkAfterExtension' class='variant'><span id='ChJunkAfterExtension.v' class='invisible'><code>ChJunkAfterExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ChSsl3NotSupported' class='variant'><span id='ChSsl3NotSupported.v' class='invisible'><code>ChSsl3NotSupported</code></span></span><span id='variant.ChTls10NotSupported' class='variant'><span id='ChTls10NotSupported.v' class='invisible'><code>ChTls10NotSupported</code></span></span><span id='variant.ChTls11NotSupported' class='variant'><span id='ChTls11NotSupported.v' class='invisible'><code>ChTls11NotSupported</code></span></span><span id='variant.SupVerJunkAfterList' class='variant'><span id='SupVerJunkAfterList.v' class='invisible'><code>SupVerJunkAfterList</code></span></span><span id='variant.SupVerExpectedVersionList' class='variant'><span id='SupVerExpectedVersionList.v' class='invisible'><code>SupVerExpectedVersionList</code></span></span><span id='variant.SupVerExpectedVersion' class='variant'><span id='SupVerExpectedVersion.v' class='invisible'><code>SupVerExpectedVersion</code></span></span><span id='variant.NoMutualTlsVersion' class='variant'><span id='NoMutualTlsVersion.v' class='invisible'><code>NoMutualTlsVersion</code></span></span><span id='variant.ChExpectedCiphersuite' class='variant'><span id='ChExpectedCiphersuite.v' class='invisible'><code>ChExpectedCiphersuite</code></span></span><span id='variant.InapporiateFallback' class='variant'><span id='InapporiateFallback.v' class='invisible'><code>InapporiateFallback</code></span></span><span id='variant.Ciphersuite0' class='variant'><span id='Ciphersuite0.v' class='invisible'><code>Ciphersuite0</code></span></span><span id='variant.NoMutualCompression' class='variant'><span id='NoMutualCompression.v' class='invisible'><code>NoMutualCompression</code></span></span><span id='variant.ChJunkAfterEnd' class='variant'><span id='ChJunkAfterEnd.v' class='invisible'><code>ChJunkAfterEnd</code></span></span><span id='variant.NoMutualCertificateType' class='variant'><span id='NoMutualCertificateType.v' class='invisible'><code>NoMutualCertificateType</code></span></span><span id='variant.SCertTypeExpectedList' class='variant'><span id='SCertTypeExpectedList.v' class='invisible'><code>SCertTypeExpectedList</code></span></span><span id='variant.SCertTypeExpectedFormat' class='variant'><span id='SCertTypeExpectedFormat.v' class='invisible'><code>SCertTypeExpectedFormat</code></span></span><span id='variant.KeyShareNotAllowedInTls12' class='variant'><span id='KeyShareNotAllowedInTls12.v' class='invisible'><code>KeyShareNotAllowedInTls12</code></span></span><span id='variant.ChRenegotiationAttackDetected' class='variant'><span id='ChRenegotiationAttackDetected.v' class='invisible'><code>ChRenegotiationAttackDetected</code></span></span><span id='variant.ShRenegotiationAttackDetected' class='variant'><span id='ShRenegotiationAttackDetected.v' class='invisible'><code>ShRenegotiationAttackDetected</code></span></span><span id='variant.Tls13RequresKeyShare' class='variant'><span id='Tls13RequresKeyShare.v' class='invisible'><code>Tls13RequresKeyShare</code></span></span><span id='variant.KeySharesNotSubsetSupGrp' class='variant'><span id='KeySharesNotSubsetSupGrp.v' class='invisible'><code>KeySharesNotSubsetSupGrp</code></span></span><span id='variant.ClientVulernableTHS' class='variant'><span id='ClientVulernableTHS.v' class='invisible'><code>ClientVulernableTHS</code></span></span><span id='variant.ClientVulernableRenego' class='variant'><span id='ClientVulernableRenego.v' class='invisible'><code>ClientVulernableRenego</code></span></span><span id='variant.ChDoubleRestart' class='variant'><span id='ChDoubleRestart.v' class='invisible'><code>ChDoubleRestart</code></span></span><span id='variant.CkeExpectedPublic' class='variant'><span id='CkeExpectedPublic.v' class='invisible'><code>CkeExpectedPublic</code></span></span><span id='variant.FinishedMacFailed' class='variant'><span id='FinishedMacFailed.v' class='invisible'><code>FinishedMacFailed</code></span></span><span id='variant.CantExtractSpki' class='variant'><span id='CantExtractSpki.v' class='invisible'><code>CantExtractSpki(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>)</code></span></span><span id='variant.InterlockCertificate' class='variant'><span id='InterlockCertificate.v' class='invisible'><code>InterlockCertificate(<a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a>)</code></span></span><span id='variant.NullExtractor' class='variant'><span id='NullExtractor.v' class='invisible'><code>NullExtractor</code></span></span><span id='variant.BadTls12MsSize' class='variant'><span id='BadTls12MsSize.v' class='invisible'><code>BadTls12MsSize</code></span></span><span id='variant.KeyblockTooSmall' class='variant'><span id='KeyblockTooSmall.v' class='invisible'><code>KeyblockTooSmall</code></span></span><span id='variant.MasterblockTooSmall' class='variant'><span id='MasterblockTooSmall.v' class='invisible'><code>MasterblockTooSmall</code></span></span><span id='variant.CantCreateProtector' class='variant'><span id='CantCreateProtector.v' class='invisible'><code>CantCreateProtector</code></span></span><span id='variant.CantCreateDeprotector' class='variant'><span id='CantCreateDeprotector.v' class='invisible'><code>CantCreateDeprotector</code></span></span><span id='variant.TextOutputTooSmall' class='variant'><span id='TextOutputTooSmall.v' class='invisible'><code>TextOutputTooSmall</code></span></span><span id='variant.ConcatenationNotUtf8' class='variant'><span id='ConcatenationNotUtf8.v' class='invisible'><code>ConcatenationNotUtf8</code></span></span><span id='variant.InterlockNontrivalKex' class='variant'><span id='InterlockNontrivalKex.v' class='invisible'><code>InterlockNontrivalKex</code></span></span><span id='variant.WrongClientRandomLength' class='variant'><span id='WrongClientRandomLength.v' class='invisible'><code>WrongClientRandomLength(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.WrongServerRandomLength' class='variant'><span id='WrongServerRandomLength.v' class='invisible'><code>WrongServerRandomLength(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.TlsExtractorsRequireEmsOrTls13' class='variant'><span id='TlsExtractorsRequireEmsOrTls13.v' class='invisible'><code>TlsExtractorsRequireEmsOrTls13</code></span></span><span id='variant.Tls13ExporterLabelTooLong' class='variant'><span id='Tls13ExporterLabelTooLong.v' class='invisible'><code>Tls13ExporterLabelTooLong</code></span></span><span id='variant.Tls13ExporterContextTooLong' class='variant'><span id='Tls13ExporterContextTooLong.v' class='invisible'><code>Tls13ExporterContextTooLong</code></span></span><span id='variant.Tls13ExporterOutputTooLong' class='variant'><span id='Tls13ExporterOutputTooLong.v' class='invisible'><code>Tls13ExporterOutputTooLong</code></span></span><span id='variant.CantLockSession' class='variant'><span id='CantLockSession.v' class='invisible'><code>CantLockSession</code></span></span><span id='variant.CvSignatureFailed' class='variant'><span id='CvSignatureFailed.v' class='invisible'><code>CvSignatureFailed</code></span></span><span id='variant.SctRequiredForCert' class='variant'><span id='SctRequiredForCert.v' class='invisible'><code>SctRequiredForCert</code></span></span><span id='variant.CantParseIssuerCertificate' class='variant'><span id='CantParseIssuerCertificate.v' class='invisible'><code>CantParseIssuerCertificate(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>)</code></span></span><span id='variant.CkeWrongNumberOfShares' class='variant'><span id='CkeWrongNumberOfShares.v' class='invisible'><code>CkeWrongNumberOfShares(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.HrrExpectedVersion' class='variant'><span id='HrrExpectedVersion.v' class='invisible'><code>HrrExpectedVersion</code></span></span><span id='variant.HrrBogusTlsVersion' class='variant'><span id='HrrBogusTlsVersion.v' class='invisible'><code>HrrBogusTlsVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.HrrTlsVersionUnsupported' class='variant'><span id='HrrTlsVersionUnsupported.v' class='invisible'><code>HrrTlsVersionUnsupported(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.HrrExpectedExtensionKind' class='variant'><span id='HrrExpectedExtensionKind.v' class='invisible'><code>HrrExpectedExtensionKind</code></span></span><span id='variant.HrrExpectedExtensionPayload' class='variant'><span id='HrrExpectedExtensionPayload.v' class='invisible'><code>HrrExpectedExtensionPayload(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.HrrDuplicateExtension' class='variant'><span id='HrrDuplicateExtension.v' class='invisible'><code>HrrDuplicateExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.HrrExpectedKeyShare' class='variant'><span id='HrrExpectedKeyShare.v' class='invisible'><code>HrrExpectedKeyShare</code></span></span><span id='variant.HrrExpectedCookie' class='variant'><span id='HrrExpectedCookie.v' class='invisible'><code>HrrExpectedCookie</code></span></span><span id='variant.HrrUnsupportedExtension' class='variant'><span id='HrrUnsupportedExtension.v' class='invisible'><code>HrrUnsupportedExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.HrrExpectedExtensions' class='variant'><span id='HrrExpectedExtensions.v' class='invisible'><code>HrrExpectedExtensions</code></span></span><span id='variant.HrrExpectedEnd' class='variant'><span id='HrrExpectedEnd.v' class='invisible'><code>HrrExpectedEnd</code></span></span><span id='variant.HrrBogusRestart' class='variant'><span id='HrrBogusRestart.v' class='invisible'><code>HrrBogusRestart</code></span></span><span id='variant.HrrAlreadyHadShare' class='variant'><span id='HrrAlreadyHadShare.v' class='invisible'><code>HrrAlreadyHadShare(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.HrrBogusCurve' class='variant'><span id='HrrBogusCurve.v' class='invisible'><code>HrrBogusCurve(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.AlpnExpectedLength1' class='variant'><span id='AlpnExpectedLength1.v' class='invisible'><code>AlpnExpectedLength1</code></span></span><span id='variant.AlpnExpectedLength2' class='variant'><span id='AlpnExpectedLength2.v' class='invisible'><code>AlpnExpectedLength2</code></span></span><span id='variant.AlpnEmptyProtocol' class='variant'><span id='AlpnEmptyProtocol.v' class='invisible'><code>AlpnEmptyProtocol</code></span></span><span id='variant.AlpnRawLengthTooBig' class='variant'><span id='AlpnRawLengthTooBig.v' class='invisible'><code>AlpnRawLengthTooBig</code></span></span><span id='variant.AlpnExpectedLen1Val' class='variant'><span id='AlpnExpectedLen1Val.v' class='invisible'><code>AlpnExpectedLen1Val(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.AlpnExpectedLen2Val' class='variant'><span id='AlpnExpectedLen2Val.v' class='invisible'><code>AlpnExpectedLen2Val(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.AlpnNonUtf8Protocol' class='variant'><span id='AlpnNonUtf8Protocol.v' class='invisible'><code>AlpnNonUtf8Protocol</code></span></span><span id='variant.AlpnBogusProtocol' class='variant'><span id='AlpnBogusProtocol.v' class='invisible'><code>AlpnBogusProtocol</code></span></span><span id='variant.SKeyShareExpectedGroup' class='variant'><span id='SKeyShareExpectedGroup.v' class='invisible'><code>SKeyShareExpectedGroup</code></span></span><span id='variant.SKeyShareExpectedKex' class='variant'><span id='SKeyShareExpectedKex.v' class='invisible'><code>SKeyShareExpectedKex</code></span></span><span id='variant.KeyShareGroupDisagreement' class='variant'><span id='KeyShareGroupDisagreement.v' class='invisible'><code>KeyShareGroupDisagreement(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.KeyShareBogusGroup' class='variant'><span id='KeyShareBogusGroup.v' class='invisible'><code>KeyShareBogusGroup(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ShExpectedVersion' class='variant'><span id='ShExpectedVersion.v' class='invisible'><code>ShExpectedVersion</code></span></span><span id='variant.ShSsl3NotSupported' class='variant'><span id='ShSsl3NotSupported.v' class='invisible'><code>ShSsl3NotSupported</code></span></span><span id='variant.ShTls10NotSupported' class='variant'><span id='ShTls10NotSupported.v' class='invisible'><code>ShTls10NotSupported</code></span></span><span id='variant.ShTls11NotSupported' class='variant'><span id='ShTls11NotSupported.v' class='invisible'><code>ShTls11NotSupported</code></span></span><span id='variant.ShBogusVersion' class='variant'><span id='ShBogusVersion.v' class='invisible'><code>ShBogusVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ShUnsupportedTlsVersion' class='variant'><span id='ShUnsupportedTlsVersion.v' class='invisible'><code>ShUnsupportedTlsVersion(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ShExpectedRandom' class='variant'><span id='ShExpectedRandom.v' class='invisible'><code>ShExpectedRandom</code></span></span><span id='variant.ShBadRandomLength' class='variant'><span id='ShBadRandomLength.v' class='invisible'><code>ShBadRandomLength</code></span></span><span id='variant.Tls13DowngradeAttack' class='variant'><span id='Tls13DowngradeAttack.v' class='invisible'><code>Tls13DowngradeAttack</code></span></span><span id='variant.ShExpectedSessionId' class='variant'><span id='ShExpectedSessionId.v' class='invisible'><code>ShExpectedSessionId</code></span></span><span id='variant.ShBogusCiphersuite' class='variant'><span id='ShBogusCiphersuite.v' class='invisible'><code>ShBogusCiphersuite(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ShExpectedCiphersuite' class='variant'><span id='ShExpectedCiphersuite.v' class='invisible'><code>ShExpectedCiphersuite</code></span></span><span id='variant.ShBadTls12Cipher' class='variant'><span id='ShBadTls12Cipher.v' class='invisible'><code>ShBadTls12Cipher(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ShBadTls13Cipher' class='variant'><span id='ShBadTls13Cipher.v' class='invisible'><code>ShBadTls13Cipher(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ShExpectedCompression' class='variant'><span id='ShExpectedCompression.v' class='invisible'><code>ShExpectedCompression</code></span></span><span id='variant.ShBogusCompression' class='variant'><span id='ShBogusCompression.v' class='invisible'><code>ShBogusCompression(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>)</code></span></span><span id='variant.ShExpectedExtensionKind' class='variant'><span id='ShExpectedExtensionKind.v' class='invisible'><code>ShExpectedExtensionKind</code></span></span><span id='variant.ShExpectedExtensionPayload' class='variant'><span id='ShExpectedExtensionPayload.v' class='invisible'><code>ShExpectedExtensionPayload(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ShDuplicateExtension' class='variant'><span id='ShDuplicateExtension.v' class='invisible'><code>ShDuplicateExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.SctExpectedList' class='variant'><span id='SctExpectedList.v' class='invisible'><code>SctExpectedList</code></span></span><span id='variant.SctExpectedEntry' class='variant'><span id='SctExpectedEntry.v' class='invisible'><code>SctExpectedEntry</code></span></span><span id='variant.SCertTypeExpectedFormatE' class='variant'><span id='SCertTypeExpectedFormatE.v' class='invisible'><code>SCertTypeExpectedFormatE</code></span></span><span id='variant.ShUnsupportedExtension' class='variant'><span id='ShUnsupportedExtension.v' class='invisible'><code>ShUnsupportedExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ShJunkAfterExtension' class='variant'><span id='ShJunkAfterExtension.v' class='invisible'><code>ShJunkAfterExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.ShExpectedExtensions' class='variant'><span id='ShExpectedExtensions.v' class='invisible'><code>ShExpectedExtensions</code></span></span><span id='variant.ShExpectedEnd' class='variant'><span id='ShExpectedEnd.v' class='invisible'><code>ShExpectedEnd</code></span></span><span id='variant.Tls13NoKeyShare' class='variant'><span id='Tls13NoKeyShare.v' class='invisible'><code>Tls13NoKeyShare</code></span></span><span id='variant.ServerVulernableTHS' class='variant'><span id='ServerVulernableTHS.v' class='invisible'><code>ServerVulernableTHS</code></span></span><span id='variant.ServerVulernableRenego' class='variant'><span id='ServerVulernableRenego.v' class='invisible'><code>ServerVulernableRenego</code></span></span><span id='variant.CertRequiresOcsp' class='variant'><span id='CertRequiresOcsp.v' class='invisible'><code>CertRequiresOcsp</code></span></span><span id='variant.CertRequiresSct' class='variant'><span id='CertRequiresSct.v' class='invisible'><code>CertRequiresSct</code></span></span><span id='variant.SkeExpectedCurveType' class='variant'><span id='SkeExpectedCurveType.v' class='invisible'><code>SkeExpectedCurveType</code></span></span><span id='variant.SkeBogusCurveType' class='variant'><span id='SkeBogusCurveType.v' class='invisible'><code>SkeBogusCurveType(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>)</code></span></span><span id='variant.SkeExpectedNamedcurve' class='variant'><span id='SkeExpectedNamedcurve.v' class='invisible'><code>SkeExpectedNamedcurve</code></span></span><span id='variant.SkeBogusCurve' class='variant'><span id='SkeBogusCurve.v' class='invisible'><code>SkeBogusCurve(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.SkeExpectedPublic' class='variant'><span id='SkeExpectedPublic.v' class='invisible'><code>SkeExpectedPublic</code></span></span><span id='variant.SkeCurveError' class='variant'><span id='SkeCurveError.v' class='invisible'><code>SkeCurveError(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>,&nbsp;<a class='enum' href='../../btls/error/enum.KeyAgreementError.html' title='btls::error::KeyAgreementError'>KeyAgreementError</a>)</code></span></span><span id='variant.SkeExpectedAlgorithm' class='variant'><span id='SkeExpectedAlgorithm.v' class='invisible'><code>SkeExpectedAlgorithm</code></span></span><span id='variant.SkeBogusSignatureAlgo' class='variant'><span id='SkeBogusSignatureAlgo.v' class='invisible'><code>SkeBogusSignatureAlgo(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.SkeExpectedSignature' class='variant'><span id='SkeExpectedSignature.v' class='invisible'><code>SkeExpectedSignature</code></span></span><span id='variant.SkeExpectedEnd' class='variant'><span id='SkeExpectedEnd.v' class='invisible'><code>SkeExpectedEnd</code></span></span><span id='variant.SkeSignatureFailed' class='variant'><span id='SkeSignatureFailed.v' class='invisible'><code>SkeSignatureFailed</code></span></span><span id='variant.ServerKeyNotWhitelisted' class='variant'><span id='ServerKeyNotWhitelisted.v' class='invisible'><code>ServerKeyNotWhitelisted</code></span></span><span id='variant.EECertParseError' class='variant'><span id='EECertParseError.v' class='invisible'><code>EECertParseError(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>)</code></span></span><span id='variant.SCertTypeBogusType' class='variant'><span id='SCertTypeBogusType.v' class='invisible'><code>SCertTypeBogusType(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>)</code></span></span><span id='variant.ServerChainEmpty' class='variant'><span id='ServerChainEmpty.v' class='invisible'><code>ServerChainEmpty</code></span></span><span id='variant.EeCertificateEmpty' class='variant'><span id='EeCertificateEmpty.v' class='invisible'><code>EeCertificateEmpty</code></span></span><span id='variant.CsBogusOcspType' class='variant'><span id='CsBogusOcspType.v' class='invisible'><code>CsBogusOcspType(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>)</code></span></span><span id='variant.CantExtractSct12' class='variant'><span id='CantExtractSct12.v' class='invisible'><code>CantExtractSct12(<a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a>)</code></span></span><span id='variant.OcspIncompleteCertificateChain' class='variant'><span id='OcspIncompleteCertificateChain.v' class='invisible'><code>OcspIncompleteCertificateChain</code></span></span><span id='variant.InvalidOcsp' class='variant'><span id='InvalidOcsp.v' class='invisible'><code>InvalidOcsp(<a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a>)</code></span></span><span id='variant.CrExpectedContext' class='variant'><span id='CrExpectedContext.v' class='invisible'><code>CrExpectedContext</code></span></span><span id='variant.CrContextMustBeEmpty' class='variant'><span id='CrContextMustBeEmpty.v' class='invisible'><code>CrContextMustBeEmpty</code></span></span><span id='variant.CantExtractSct13' class='variant'><span id='CantExtractSct13.v' class='invisible'><code>CantExtractSct13(<a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a>)</code></span></span><span id='variant.CertificateValidationFailed' class='variant'><span id='CertificateValidationFailed.v' class='invisible'><code>CertificateValidationFailed(<a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a>)</code></span></span><span id='variant.CertExpectCertList' class='variant'><span id='CertExpectCertList.v' class='invisible'><code>CertExpectCertList</code></span></span><span id='variant.CertExpectIntermeidate' class='variant'><span id='CertExpectIntermeidate.v' class='invisible'><code>CertExpectIntermeidate</code></span></span><span id='variant.CertIntermediateEmpty' class='variant'><span id='CertIntermediateEmpty.v' class='invisible'><code>CertIntermediateEmpty</code></span></span><span id='variant.CertExpectedContext' class='variant'><span id='CertExpectedContext.v' class='invisible'><code>CertExpectedContext</code></span></span><span id='variant.CertExpectExtensionKind' class='variant'><span id='CertExpectExtensionKind.v' class='invisible'><code>CertExpectExtensionKind</code></span></span><span id='variant.CertExpectExtionPayload' class='variant'><span id='CertExpectExtionPayload.v' class='invisible'><code>CertExpectExtionPayload(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.CertDuplicateExtension' class='variant'><span id='CertDuplicateExtension.v' class='invisible'><code>CertDuplicateExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.OcspExpectedType' class='variant'><span id='OcspExpectedType.v' class='invisible'><code>OcspExpectedType</code></span></span><span id='variant.OcspExpectedContent' class='variant'><span id='OcspExpectedContent.v' class='invisible'><code>OcspExpectedContent</code></span></span><span id='variant.SCertTypeInNotFirstCert' class='variant'><span id='SCertTypeInNotFirstCert.v' class='invisible'><code>SCertTypeInNotFirstCert</code></span></span><span id='variant.CertUnsupportedExtension' class='variant'><span id='CertUnsupportedExtension.v' class='invisible'><code>CertUnsupportedExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.CertJunkAfterExtension' class='variant'><span id='CertJunkAfterExtension.v' class='invisible'><code>CertJunkAfterExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.CertExpectedExtensions' class='variant'><span id='CertExpectedExtensions.v' class='invisible'><code>CertExpectedExtensions</code></span></span><span id='variant.CvExpectedAlgorithm' class='variant'><span id='CvExpectedAlgorithm.v' class='invisible'><code>CvExpectedAlgorithm</code></span></span><span id='variant.CvBogusSignatureAlgo' class='variant'><span id='CvBogusSignatureAlgo.v' class='invisible'><code>CvBogusSignatureAlgo(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.CvExpectedSignature' class='variant'><span id='CvExpectedSignature.v' class='invisible'><code>CvExpectedSignature</code></span></span><span id='variant.CvExpectedEnd' class='variant'><span id='CvExpectedEnd.v' class='invisible'><code>CvExpectedEnd</code></span></span><span id='variant.CsExpectedStatusType' class='variant'><span id='CsExpectedStatusType.v' class='invisible'><code>CsExpectedStatusType</code></span></span><span id='variant.CsExpectedResponse' class='variant'><span id='CsExpectedResponse.v' class='invisible'><code>CsExpectedResponse</code></span></span><span id='variant.CsEmptyResponse' class='variant'><span id='CsEmptyResponse.v' class='invisible'><code>CsEmptyResponse</code></span></span><span id='variant.EeExpectedExtensionKind' class='variant'><span id='EeExpectedExtensionKind.v' class='invisible'><code>EeExpectedExtensionKind</code></span></span><span id='variant.EeExpectedExtensionPayload' class='variant'><span id='EeExpectedExtensionPayload.v' class='invisible'><code>EeExpectedExtensionPayload(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.EeDuplicateExtension' class='variant'><span id='EeDuplicateExtension.v' class='invisible'><code>EeDuplicateExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.EeUnsupportedExtension' class='variant'><span id='EeUnsupportedExtension.v' class='invisible'><code>EeUnsupportedExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.EeJunkAfterExtension' class='variant'><span id='EeJunkAfterExtension.v' class='invisible'><code>EeJunkAfterExtension(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>)</code></span></span><span id='variant.EeExpectedExtensions' class='variant'><span id='EeExpectedExtensions.v' class='invisible'><code>EeExpectedExtensions</code></span></span><span id='variant.EeExpectedEnd' class='variant'><span id='EeExpectedEnd.v' class='invisible'><code>EeExpectedEnd</code></span></span><span id='variant.DeprotectionFailed' class='variant'><span id='DeprotectionFailed.v' class='invisible'><code>DeprotectionFailed</code></span></span><span id='variant.AppdataBeforeFinished' class='variant'><span id='AppdataBeforeFinished.v' class='invisible'><code>AppdataBeforeFinished</code></span></span><span id='variant.AppdataAfterEof' class='variant'><span id='AppdataAfterEof.v' class='invisible'><code>AppdataAfterEof</code></span></span><span id='variant.RecvAppdataRQueueEof' class='variant'><span id='RecvAppdataRQueueEof.v' class='invisible'><code>RecvAppdataRQueueEof</code></span></span><span id='variant.MaxRecordScratchOverflow' class='variant'><span id='MaxRecordScratchOverflow.v' class='invisible'><code>MaxRecordScratchOverflow</code></span></span><span id='variant.TxHandshakeMsgOver16MB' class='variant'><span id='TxHandshakeMsgOver16MB.v' class='invisible'><code>TxHandshakeMsgOver16MB(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.FragmentTooBig' class='variant'><span id='FragmentTooBig.v' class='invisible'><code>FragmentTooBig(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.InvalidFragRtype' class='variant'><span id='InvalidFragRtype.v' class='invisible'><code>InvalidFragRtype(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>)</code></span></span><span id='variant.PacketLengthOutOfWhack' class='variant'><span id='PacketLengthOutOfWhack.v' class='invisible'><code>PacketLengthOutOfWhack(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.RecordTooBig' class='variant'><span id='RecordTooBig.v' class='invisible'><code>RecordTooBig(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.NoPacketToProcess' class='variant'><span id='NoPacketToProcess.v' class='invisible'><code>NoPacketToProcess</code></span></span><span id='variant.ShortreadRecordHeader' class='variant'><span id='ShortreadRecordHeader.v' class='invisible'><code>ShortreadRecordHeader</code></span></span><span id='variant.RxRecordTooBig' class='variant'><span id='RxRecordTooBig.v' class='invisible'><code>RxRecordTooBig(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.PacketLengthToSendOutOfWhack' class='variant'><span id='PacketLengthToSendOutOfWhack.v' class='invisible'><code>PacketLengthToSendOutOfWhack(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><span id='variant.ProtectingPaceketFailed' class='variant'><span id='ProtectingPaceketFailed.v' class='invisible'><code>ProtectingPaceketFailed</code></span></span><span id='variant.TxQueueWriteFailed' class='variant'><span id='TxQueueWriteFailed.v' class='invisible'><code>TxQueueWriteFailed(<a class='enum' href='../../btls/error/enum.QueueWriteError.html' title='btls::error::QueueWriteError'>QueueWriteError</a>)</code></span></span><span id='variant.NormalClose' class='variant'><span id='NormalClose.v' class='invisible'><code>NormalClose</code></span></span><span id='variant.ProtectingPaceketFailedZ' class='variant'><span id='ProtectingPaceketFailedZ.v' class='invisible'><code>ProtectingPaceketFailedZ</code></span></span><span id='variant.ReadDiscardFailed' class='variant'><span id='ReadDiscardFailed.v' class='invisible'><code>ReadDiscardFailed(<a class='enum' href='../../btls/error/enum.QueueReadError.html' title='btls::error::QueueReadError'>QueueReadError</a>)</code></span></span><span id='variant.ValidationHandshakeDone' class='variant'><span id='ValidationHandshakeDone.v' class='invisible'><code>ValidationHandshakeDone</code></span></span><span id='variant.NoRecordExpected' class='variant'><span id='NoRecordExpected.v' class='invisible'><code>NoRecordExpected</code></span></span><span id='variant.UnknownIoException' class='variant'><span id='UnknownIoException.v' class='invisible'><code>UnknownIoException</code></span></span><span id='variant.TxQueueEof' class='variant'><span id='TxQueueEof.v' class='invisible'><code>TxQueueEof</code></span></span><span id='variant.TxQueueDiscard' class='variant'><span id='TxQueueDiscard.v' class='invisible'><code>TxQueueDiscard(<a class='enum' href='../../btls/error/enum.QueueReadError.html' title='btls::error::QueueReadError'>QueueReadError</a>)</code></span></span><span id='variant.RxQueueEof' class='variant'><span id='RxQueueEof.v' class='invisible'><code>RxQueueEof</code></span></span><span id='variant.WQueueDataNotRead' class='variant'><span id='WQueueDataNotRead.v' class='invisible'><code>WQueueDataNotRead</code></span></span><span id='variant.StreamReadOverflow' class='variant'><span id='StreamReadOverflow.v' class='invisible'><code>StreamReadOverflow</code></span></span><span id='variant.NoTrustAnchors' class='variant'><span id='NoTrustAnchors.v' class='invisible'><code>NoTrustAnchors</code></span></span><span id='variant.CantLockAcmeChallenges' class='variant'><span id='CantLockAcmeChallenges.v' class='invisible'><code>CantLockAcmeChallenges</code></span></span><span id='variant.InternalConnection' class='variant'><span id='InternalConnection.v' class='invisible'><code>InternalConnection</code></span></span><span id='variant.TlsSessionError' class='variant'><span id='TlsSessionError.v' class='invisible'><code>TlsSessionError</code></span></span><span id='variant.IntErrNoIssuerSerial' class='variant'><span id='IntErrNoIssuerSerial.v' class='invisible'><code>IntErrNoIssuerSerial</code></span></span><span id='variant.SctValidationFailed' class='variant'><span id='SctValidationFailed.v' class='invisible'><code>SctValidationFailed(<a class='enum' href='../../btls/error/enum.SctError.html' title='btls::error::SctError'>SctError</a>)</code></span></span><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='enum' href='../../btls/error/enum.TlsFailure.html' title='btls::error::TlsFailure'>TlsFailure</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/common/tlserr.rs.html#384-1006' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.get_alert_num' class='method'><span id='get_alert_num.v' class='invisible'><code>fn <a href='#method.get_alert_num' class='fnname'>get_alert_num</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></span></h4>
+<div class='docblock'><p>Get TLS alert number that corresponds to the failure.</p>
+
+<p>Note: Some failures return alert #0, which is CLOSE_NOTIFY.</p>
+</div><h4 id='method.get_explanation' class='method'><span id='get_explanation.v' class='invisible'><code>fn <a href='#method.get_explanation' class='fnname'>get_explanation</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;'static, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;</code></span></h4>
+<div class='docblock'><p>Get explanation text for an error.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='enum' href='../../btls/error/enum.TlsFailure.html' title='btls::error::TlsFailure'>TlsFailure</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/common/tlserr.rs.html#113' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class='method'><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='enum' href='../../btls/error/enum.TlsFailure.html' title='btls::error::TlsFailure'>TlsFailure</a></code></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class='method'><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../btls/error/enum.TlsFailure.html' title='btls::error::TlsFailure'>TlsFailure</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/common/tlserr.rs.html#113' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html' title='core::fmt::Display'>Display</a> for <a class='enum' href='../../btls/error/enum.TlsFailure.html' title='btls::error::TlsFailure'>TlsFailure</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/common/tlserr.rs.html#1008-1014' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt-1' class='method'><span id='fmt.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, fmt: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html' title='core::fmt::Error'>FmtError</a>&gt;</code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html' title='std::error::Error'>Error</a> for <a class='enum' href='../../btls/error/enum.TlsFailure.html' title='btls::error::TlsFailure'>TlsFailure</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/common/tlserr.rs.html#1016-1313' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.description' class='method'><span id='description.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html#tymethod.description' class='fnname'>description</a>(&amp;self) -&gt; &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a></code></span></h4>
+<div class='docblock'><p>A short description of the error. <a href="https://doc.rust-lang.org/nightly/std/error/trait.Error.html#tymethod.description">Read more</a></p>
+</div><h4 id='method.cause' class='method'><span id='cause.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html#method.cause' class='fnname'>cause</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html' title='std::error::Error'>Error</a>&gt;</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
+<div class='docblock'><p>The lower-level cause of this error, if any. <a href="https://doc.rust-lang.org/nightly/std/error/trait.Error.html#method.cause">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "btls";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

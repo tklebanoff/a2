@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `create_future` fn in crate `btls`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, create_future">
+
+    <title>btls::futures::create_future - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>btls</a>::<wbr><a href='index.html'>futures</a></p><script>window.sidebarCurrent = {name: 'create_future', ty: 'fn', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content fn">
+<h1 class='fqn'><span class='in-band'>Function <a href='../index.html'>btls</a>::<wbr><a href='index.html'>futures</a>::<wbr><a class='fn' href=''>create_future</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/btls/futures.rs.html#218-224' title='goto source code'>[src]</a></span></h1>
+<pre class='rust fn'>pub fn create_future&lt;T:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Sized.html' title='core::marker::Sized'>Sized</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Send.html' title='core::marker::Send'>Send</a>&gt;() -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='../../btls/futures/struct.FutureSender.html' title='btls::futures::FutureSender'>FutureSender</a>&lt;T&gt;, <a class='struct' href='../../btls/futures/struct.FutureReceiver.html' title='btls::futures::FutureReceiver'>FutureReceiver</a>&lt;T&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></pre><div class='docblock'><p>Create a future value.</p>
+
+<p>This function creates a <code>(sender, receiver)</code> pair for a future value of type <code>T</code>.</p>
+
+<h1 id='futures' class='section-header'><a href='#futures'>Futures:</a></h1>
+<p>You don&#39;t need to understand futures with this library unless you are changing the way
+certificate lookup/signing works.</p>
+
+<p>Futures model computation that happens asynchronously, and whose final value may not be known yet.
+When the value is known, the future settles, and the value of computation can then be extracted</p>
+
+<p>The computation invoked can also be synchronous: In that case, the value settles during
+invocation of the computation.</p>
+
+<p>Because the values are stored, they need to be <code>Sized</code> and because those can cross threads,
+the values need to be <code>Send</code>. Because no synchronous mutation is possible, <code>Sync</code> is not needed.</p>
+
+<p>In this implementation of futures, one can:</p>
+
+<ul>
+<li>Create an unsettled future by using this function. It also returns object that can settle the
+future (and be consumed in process), by using the <code>.settle()</code> method.</li>
+<li>Create an immediately settled future by using the <a href="struct.FutureReceiver.html"><code>FutureReceiver::from</code></a> function (from <code>From</code>
+trait).</li>
+<li>Check if future has settled by using the <code>.settled()</code> value on the receiver.</li>
+<li>When the future has settled, read the value using <code>.read()</code> value on receiver, consuming the
+receiver.</li>
+</ul>
+
+<h1 id='return-value' class='section-header'><a href='#return-value'>Return value:</a></h1>
+<ul>
+<li>The future sender.</li>
+<li>The future receiver.</li>
+</ul>
+</div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "btls";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

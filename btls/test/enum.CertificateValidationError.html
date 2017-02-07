@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `CertificateValidationError` enum in crate `btls`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, CertificateValidationError">
+
+    <title>btls::test::CertificateValidationError - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>btls</a>::<wbr><a href='index.html'>test</a></p><script>window.sidebarCurrent = {name: 'CertificateValidationError', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>btls</a>::<wbr><a href='index.html'>test</a>::<wbr><a class='enum' href=''>CertificateValidationError</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/btls/certificate/validation.rs.html#29-135' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum CertificateValidationError {
+    IntErrBadKeymap,
+    IntErrBadTamap,
+    IntErrNoSubjRep,
+    IntErrNoIssRep,
+    IntErrBlankPath,
+    IntErrNoSubjId,
+    IntErrNoPlenEnt,
+    IntErrNoIssId,
+    IntErrNoIssFor,
+    IntErrNoIssRev,
+    IntErrNoIssForEnt,
+    IntErrNoRevSortMap,
+    IntErrBrokenLink,
+    IntErrTooManyCerts,
+    ConflictingKeys,
+    EeSpkiExtraction(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>),
+    PathLenViolation,
+    OcspStapleRequred,
+    SctStapleRequred,
+    EmsRequired,
+    Tls13Required,
+    SecureRenegoRequired,
+    RequireUnknownFeatures,
+    UnmetFeatures(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>),
+    CaCertParseError(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>),
+    DidNotIssueEeCert(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    CaKillisted(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    CaCantHaveEeKeys(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    CaSignatureMismatch(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    CaNotYetValid(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>),
+    CaExpired(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>),
+    CaIsNotCa(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    CaNotValidForTls(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    CaSuperfluous(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    NameConstraintViolation(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    CaBadSignatureAlgorithm(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    EeCertParseError(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>),
+    EeKillisted,
+    EeSignatureMismatch,
+    EeNotValidForTls,
+    EeCertificateCa,
+    EeNotValidForName(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>),
+    EeNotYetValid(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>),
+    EeExpired(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>),
+    SelfSigned,
+    EeBadSignatureAlgorithm,
+    NoIssuerCert,
+    NoCertifcatesMatchPins,
+    CaUnknown,
+    SignatureFailure(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>),
+    PublicKeyMismatch,
+    // some variants omitted
+}</pre><div class='docblock'><p>Error in validating certificate.</p>
+</div><h2 class='variants'>Variants</h2>
+<span id='variant.IntErrBadKeymap' class='variant'><span id='IntErrBadKeymap.v' class='invisible'><code>IntErrBadKeymap</code></span></span><div class='docblock'><p>Internal error: Key map is inconsistent.</p>
+</div><span id='variant.IntErrBadTamap' class='variant'><span id='IntErrBadTamap.v' class='invisible'><code>IntErrBadTamap</code></span></span><div class='docblock'><p>Internal error: Trust Anchor map is inconsistent.</p>
+</div><span id='variant.IntErrNoSubjRep' class='variant'><span id='IntErrNoSubjRep.v' class='invisible'><code>IntErrNoSubjRep</code></span></span><div class='docblock'><p>Internal error: No subject represntative found.</p>
+</div><span id='variant.IntErrNoIssRep' class='variant'><span id='IntErrNoIssRep.v' class='invisible'><code>IntErrNoIssRep</code></span></span><div class='docblock'><p>Internal error: No issuer representative found.</p>
+</div><span id='variant.IntErrBlankPath' class='variant'><span id='IntErrBlankPath.v' class='invisible'><code>IntErrBlankPath</code></span></span><div class='docblock'><p>Internal error: Blank path constructed.</p>
+</div><span id='variant.IntErrNoSubjId' class='variant'><span id='IntErrNoSubjId.v' class='invisible'><code>IntErrNoSubjId</code></span></span><div class='docblock'><p>Internal error: No subject ID.</p>
+</div><span id='variant.IntErrNoPlenEnt' class='variant'><span id='IntErrNoPlenEnt.v' class='invisible'><code>IntErrNoPlenEnt</code></span></span><div class='docblock'><p>Internal error: No PathLen entry.</p>
+</div><span id='variant.IntErrNoIssId' class='variant'><span id='IntErrNoIssId.v' class='invisible'><code>IntErrNoIssId</code></span></span><div class='docblock'><p>Internal error: No Issuer ID.</p>
+</div><span id='variant.IntErrNoIssFor' class='variant'><span id='IntErrNoIssFor.v' class='invisible'><code>IntErrNoIssFor</code></span></span><div class='docblock'><p>Internal error: No issued for entry.</p>
+</div><span id='variant.IntErrNoIssRev' class='variant'><span id='IntErrNoIssRev.v' class='invisible'><code>IntErrNoIssRev</code></span></span><div class='docblock'><p>Internal error: No issued by entry.</p>
+</div><span id='variant.IntErrNoIssForEnt' class='variant'><span id='IntErrNoIssForEnt.v' class='invisible'><code>IntErrNoIssForEnt</code></span></span><div class='docblock'><p>Internal error: No issued for for entry.</p>
+</div><span id='variant.IntErrNoRevSortMap' class='variant'><span id='IntErrNoRevSortMap.v' class='invisible'><code>IntErrNoRevSortMap</code></span></span><div class='docblock'><p>Internal error: No reverse sort map.</p>
+</div><span id='variant.IntErrBrokenLink' class='variant'><span id='IntErrBrokenLink.v' class='invisible'><code>IntErrBrokenLink</code></span></span><div class='docblock'><p>Internal error: Broken link.</p>
+</div><span id='variant.IntErrTooManyCerts' class='variant'><span id='IntErrTooManyCerts.v' class='invisible'><code>IntErrTooManyCerts</code></span></span><div class='docblock'><p>Internal error: Too many certificates.</p>
+</div><span id='variant.ConflictingKeys' class='variant'><span id='ConflictingKeys.v' class='invisible'><code>ConflictingKeys</code></span></span><div class='docblock'><p>Conflicting keys.</p>
+</div><span id='variant.EeSpkiExtraction' class='variant'><span id='EeSpkiExtraction.v' class='invisible'><code>EeSpkiExtraction(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>)</code></span></span><div class='docblock'><p>Error extracting SPKI keys.</p>
+</div><span id='variant.PathLenViolation' class='variant'><span id='PathLenViolation.v' class='invisible'><code>PathLenViolation</code></span></span><div class='docblock'><p>Path length constraint violated.</p>
+</div><span id='variant.OcspStapleRequred' class='variant'><span id='OcspStapleRequred.v' class='invisible'><code>OcspStapleRequred</code></span></span><div class='docblock'><p>OCSP stapling is required.</p>
+</div><span id='variant.SctStapleRequred' class='variant'><span id='SctStapleRequred.v' class='invisible'><code>SctStapleRequred</code></span></span><div class='docblock'><p>SCT stapling is required.</p>
+</div><span id='variant.EmsRequired' class='variant'><span id='EmsRequired.v' class='invisible'><code>EmsRequired</code></span></span><div class='docblock'><p>EMS support is required.</p>
+</div><span id='variant.Tls13Required' class='variant'><span id='Tls13Required.v' class='invisible'><code>Tls13Required</code></span></span><div class='docblock'><p>TLS 1.3 is required.</p>
+</div><span id='variant.SecureRenegoRequired' class='variant'><span id='SecureRenegoRequired.v' class='invisible'><code>SecureRenegoRequired</code></span></span><div class='docblock'><p>Secure renegotiation is required.</p>
+</div><span id='variant.RequireUnknownFeatures' class='variant'><span id='RequireUnknownFeatures.v' class='invisible'><code>RequireUnknownFeatures</code></span></span><div class='docblock'><p>Certificate requires unknown features.</p>
+</div><span id='variant.UnmetFeatures' class='variant'><span id='UnmetFeatures.v' class='invisible'><code>UnmetFeatures(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>)</code></span></span><div class='docblock'><p>Certificate has unmet feature requirements.</p>
+</div><span id='variant.CaCertParseError' class='variant'><span id='CaCertParseError.v' class='invisible'><code>CaCertParseError(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>)</code></span></span><div class='docblock'><p>Error parsing CA certificate.</p>
+</div><span id='variant.DidNotIssueEeCert' class='variant'><span id='DidNotIssueEeCert.v' class='invisible'><code>DidNotIssueEeCert(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><div class='docblock'><p>CA did not issue EE certificate.</p>
+</div><span id='variant.CaKillisted' class='variant'><span id='CaKillisted.v' class='invisible'><code>CaKillisted(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><div class='docblock'><p>CA key is kill-listed.</p>
+</div><span id='variant.CaCantHaveEeKeys' class='variant'><span id='CaCantHaveEeKeys.v' class='invisible'><code>CaCantHaveEeKeys(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><div class='docblock'><p>CA keys collide with EE keys.</p>
+</div><span id='variant.CaSignatureMismatch' class='variant'><span id='CaSignatureMismatch.v' class='invisible'><code>CaSignatureMismatch(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><div class='docblock'><p>CA signature algorithm mismatch.</p>
+</div><span id='variant.CaNotYetValid' class='variant'><span id='CaNotYetValid.v' class='invisible'><code>CaNotYetValid(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>)</code></span></span><div class='docblock'><p>CA not yet valid.</p>
+</div><span id='variant.CaExpired' class='variant'><span id='CaExpired.v' class='invisible'><code>CaExpired(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>)</code></span></span><div class='docblock'><p>CA expired.</p>
+</div><span id='variant.CaIsNotCa' class='variant'><span id='CaIsNotCa.v' class='invisible'><code>CaIsNotCa(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><div class='docblock'><p>CA is not marked as a CA.</p>
+</div><span id='variant.CaNotValidForTls' class='variant'><span id='CaNotValidForTls.v' class='invisible'><code>CaNotValidForTls(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><div class='docblock'><p>CA certificate not valid for TLS.</p>
+</div><span id='variant.CaSuperfluous' class='variant'><span id='CaSuperfluous.v' class='invisible'><code>CaSuperfluous(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><div class='docblock'><p>CA certificate is superfluous.</p>
+</div><span id='variant.NameConstraintViolation' class='variant'><span id='NameConstraintViolation.v' class='invisible'><code>NameConstraintViolation(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>)</code></span></span><div class='docblock'><p>Name constraints violated.</p>
+</div><span id='variant.CaBadSignatureAlgorithm' class='variant'><span id='CaBadSignatureAlgorithm.v' class='invisible'><code>CaBadSignatureAlgorithm(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><div class='docblock'><p>CA uses bad signature algorithm.</p>
+</div><span id='variant.EeCertParseError' class='variant'><span id='EeCertParseError.v' class='invisible'><code>EeCertParseError(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>)</code></span></span><div class='docblock'><p>Error parsing EE certificate.</p>
+</div><span id='variant.EeKillisted' class='variant'><span id='EeKillisted.v' class='invisible'><code>EeKillisted</code></span></span><div class='docblock'><p>EE key is kill-listed.</p>
+</div><span id='variant.EeSignatureMismatch' class='variant'><span id='EeSignatureMismatch.v' class='invisible'><code>EeSignatureMismatch</code></span></span><div class='docblock'><p>EE signature algorithm mismatch.</p>
+</div><span id='variant.EeNotValidForTls' class='variant'><span id='EeNotValidForTls.v' class='invisible'><code>EeNotValidForTls</code></span></span><div class='docblock'><p>EE certificate not valid for TLS.</p>
+</div><span id='variant.EeCertificateCa' class='variant'><span id='EeCertificateCa.v' class='invisible'><code>EeCertificateCa</code></span></span><div class='docblock'><p>EE certificate is a CA.</p>
+</div><span id='variant.EeNotValidForName' class='variant'><span id='EeNotValidForName.v' class='invisible'><code>EeNotValidForName(<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>)</code></span></span><div class='docblock'><p>EE certificate not valid for name.</p>
+</div><span id='variant.EeNotYetValid' class='variant'><span id='EeNotYetValid.v' class='invisible'><code>EeNotYetValid(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>)</code></span></span><div class='docblock'><p>EE certificate not yet valid.</p>
+</div><span id='variant.EeExpired' class='variant'><span id='EeExpired.v' class='invisible'><code>EeExpired(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>)</code></span></span><div class='docblock'><p>EE certificate expired.</p>
+</div><span id='variant.SelfSigned' class='variant'><span id='SelfSigned.v' class='invisible'><code>SelfSigned</code></span></span><div class='docblock'><p>EE certificate is self-signed.</p>
+</div><span id='variant.EeBadSignatureAlgorithm' class='variant'><span id='EeBadSignatureAlgorithm.v' class='invisible'><code>EeBadSignatureAlgorithm</code></span></span><div class='docblock'><p>EE certificate has bad signature algorithm.</p>
+</div><span id='variant.NoIssuerCert' class='variant'><span id='NoIssuerCert.v' class='invisible'><code>NoIssuerCert</code></span></span><div class='docblock'><p>No EE issuer certificate found.</p>
+</div><span id='variant.NoCertifcatesMatchPins' class='variant'><span id='NoCertifcatesMatchPins.v' class='invisible'><code>NoCertifcatesMatchPins</code></span></span><div class='docblock'><p>No certificates match pins.</p>
+</div><span id='variant.CaUnknown' class='variant'><span id='CaUnknown.v' class='invisible'><code>CaUnknown</code></span></span><div class='docblock'><p>Certificate not signed by any known CA.</p>
+</div><span id='variant.SignatureFailure' class='variant'><span id='SignatureFailure.v' class='invisible'><code>SignatureFailure(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>)</code></span></span><div class='docblock'><p>Signature verification failed.</p>
+</div><span id='variant.PublicKeyMismatch' class='variant'><span id='PublicKeyMismatch.v' class='invisible'><code>PublicKeyMismatch</code></span></span><div class='docblock'><p>Public key mismatch against provoded one.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/certificate/validation.rs.html#137-207' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.problem_class' class='method'><span id='problem_class.v' class='invisible'><code>fn <a href='#method.problem_class' class='fnname'>problem_class</a>(&amp;self) -&gt; <a class='enum' href='../../btls/test/enum.MajorCertProblem.html' title='btls::test::MajorCertProblem'>MajorCertProblem</a></code></span></h4>
+<div class='docblock'><p>Get the problem class.</p>
+
+<p># Parameters:</p>
+
+<ul>
+<li><p><code>self</code>: The validation error.</p>
+
+<h1 id='returns' class='section-header'><a href='#returns'>Returns:</a></h1>
+<p>The major problem class.</p></li>
+</ul>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/certificate/validation.rs.html#28' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class='method'><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a></code></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class='method'><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/certificate/validation.rs.html#28' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/certificate/validation.rs.html#28' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class='method'><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class='method'><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/certificate/validation.rs.html#28' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html' title='core::fmt::Display'>Display</a> for <a class='enum' href='../../btls/error/enum.CertificateValidationError.html' title='btls::error::CertificateValidationError'>CertificateValidationError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/certificate/validation.rs.html#209-286' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt-1' class='method'><span id='fmt.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, fmt: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html' title='core::fmt::Error'>FmtError</a>&gt;</code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "btls";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

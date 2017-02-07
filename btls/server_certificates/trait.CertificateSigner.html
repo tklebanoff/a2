@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `CertificateSigner` trait in crate `btls`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, CertificateSigner">
+
+    <title>btls::server_certificates::CertificateSigner - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>btls</a>::<wbr><a href='index.html'>server_certificates</a></p><script>window.sidebarCurrent = {name: 'CertificateSigner', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>btls</a>::<wbr><a href='index.html'>server_certificates</a>::<wbr><a class='trait' href=''>CertificateSigner</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/btls/server_certificates/mod.rs.html#75-149' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait CertificateSigner {
+    fn <a href='#tymethod.sign' class='fnname'>sign</a>(&amp;self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='struct' href='../../btls/futures/struct.FutureReceiver.html' title='btls::futures::FutureReceiver'>FutureReceiver</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;&gt;;
+    fn <a href='#tymethod.is_ecdsa' class='fnname'>is_ecdsa</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>;
+    fn <a href='#tymethod.get_certificate' class='fnname'>get_certificate</a>(&amp;self) -&gt; <a class='struct' href='../../btls/server_certificates/struct.CertificateChain.html' title='btls::server_certificates::CertificateChain'>CertificateChain</a>;
+
+    fn <a href='#method.get_ocsp' class='fnname'>get_ocsp</a>(&amp;self) -&gt; <a class='struct' href='../../btls/server_certificates/struct.OcspResponse.html' title='btls::server_certificates::OcspResponse'>OcspResponse</a> { ... }
+    fn <a href='#method.get_scts' class='fnname'>get_scts</a>(&amp;self) -&gt; <a class='struct' href='../../btls/server_certificates/struct.StapledSctList.html' title='btls::server_certificates::StapledSctList'>StapledSctList</a> { ... }
+}</pre><div class='docblock'><p>A certificate chain, plus signer for the associated private key.</p>
+
+<p>This trait is for objects that represent the results of certificate selection. It provodes signing
+capability with certificate private key and the certificate info (along with assoicated info).</p>
+
+<p>You don&#39;t have to understand the internals of this trait unless you are changing the way
+certificate lookup or certificate signing works.</p>
+</div>
+            <h2 id='required-methods'>Required Methods</h2>
+            <div class='methods'>
+        <h3 id='tymethod.sign' class='method stab '><span id='sign.v' class='invisible'><code>fn <a href='#tymethod.sign' class='fnname'>sign</a>(&amp;self, data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='struct' href='../../btls/futures/struct.FutureReceiver.html' title='btls::futures::FutureReceiver'>FutureReceiver</a>&lt;<a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u16.html'>u16</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>&gt;&gt;</code></span></h3><div class='docblock'><p>Sign a message.</p>
+
+<h1 id='parameters' class='section-header'><a href='#parameters'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The signer.</li>
+<li><code>data</code>: The raw data to sign.</li>
+</ul>
+
+<h1 id='returns' class='section-header'><a href='#returns'>Returns:</a></h1>
+<ul>
+<li>A future for:
+
+<ul>
+<li>The TLS SignatureScheme value.</li>
+<li>The actual signature.</li>
+<li>Or on failure, <code>()</code>.</li>
+</ul></li>
+</ul>
+
+<h1 id='notes' class='section-header'><a href='#notes'>Notes:</a></h1>
+<ul>
+<li>Because signing can involve contacting an external signer, the return value is a future
+and not a direct value. If the future has not settled, the handshake will be paused
+until it is.</li>
+</ul>
+</div><h3 id='tymethod.is_ecdsa' class='method stab '><span id='is_ecdsa.v' class='invisible'><code>fn <a href='#tymethod.is_ecdsa' class='fnname'>is_ecdsa</a>(&amp;self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h3><div class='docblock'><p>Is ECDSA (also EdDSA)?</p>
+
+<h1 id='parameters-1' class='section-header'><a href='#parameters-1'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The signer.</li>
+</ul>
+
+<h1 id='returns-1' class='section-header'><a href='#returns-1'>Returns:</a></h1>
+<ul>
+<li><code>true</code> if signature scheme is ECDSA or EdDSA, false otherwise.</li>
+</ul>
+</div><h3 id='tymethod.get_certificate' class='method stab '><span id='get_certificate.v' class='invisible'><code>fn <a href='#tymethod.get_certificate' class='fnname'>get_certificate</a>(&amp;self) -&gt; <a class='struct' href='../../btls/server_certificates/struct.CertificateChain.html' title='btls::server_certificates::CertificateChain'>CertificateChain</a></code></span></h3><div class='docblock'><p>Get the certificate chain.</p>
+
+<h1 id='parameters-2' class='section-header'><a href='#parameters-2'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The signer.</li>
+</ul>
+
+<h1 id='returns-2' class='section-header'><a href='#returns-2'>Returns:</a></h1>
+<ul>
+<li>The associated certificate chain.</li>
+</ul>
+</div></div>
+            <h2 id='provided-methods'>Provided Methods</h2>
+            <div class='methods'>
+        <h3 id='method.get_ocsp' class='method stab '><span id='get_ocsp.v' class='invisible'><code>fn <a href='#method.get_ocsp' class='fnname'>get_ocsp</a>(&amp;self) -&gt; <a class='struct' href='../../btls/server_certificates/struct.OcspResponse.html' title='btls::server_certificates::OcspResponse'>OcspResponse</a></code></span></h3><div class='docblock'><p>Get OCSP staple for certificate.</p>
+
+<h1 id='parameters-3' class='section-header'><a href='#parameters-3'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The signer.</li>
+</ul>
+
+<h1 id='returns-3' class='section-header'><a href='#returns-3'>Returns:</a></h1>
+<ul>
+<li>The associated OCSP stapling response. Empty if none.</li>
+</ul>
+</div><h3 id='method.get_scts' class='method stab '><span id='get_scts.v' class='invisible'><code>fn <a href='#method.get_scts' class='fnname'>get_scts</a>(&amp;self) -&gt; <a class='struct' href='../../btls/server_certificates/struct.StapledSctList.html' title='btls::server_certificates::StapledSctList'>StapledSctList</a></code></span></h3><div class='docblock'><p>Get SCT staples for certificate</p>
+
+<h1 id='parameters-4' class='section-header'><a href='#parameters-4'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The signer.</li>
+</ul>
+
+<h1 id='returns-4' class='section-header'><a href='#returns-4'>Returns:</a></h1>
+<ul>
+<li>The associated SCT stapling response.</li>
+</ul>
+
+<h1 id='notes-1' class='section-header'><a href='#notes-1'>Notes:</a></h1>
+<ul>
+<li>If list of SCTs is empty, no SCT staple gets sent.</li>
+</ul>
+</div></div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><code>impl CertificateSigner for <a class='struct' href='../../btls/test/struct.AcmeCertificate.html' title='btls::test::AcmeCertificate'>AcmeCertificate</a></code></li>
+</ul><script type="text/javascript" async
+                         src="../../implementors/btls/server_certificates/trait.CertificateSigner.js">
+                 </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "btls";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

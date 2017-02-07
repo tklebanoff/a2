@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `LocalServerCertificateHandle` struct in crate `btls`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, LocalServerCertificateHandle">
+
+    <title>btls::server_certificates::LocalServerCertificateHandle - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>btls</a>::<wbr><a href='index.html'>server_certificates</a></p><script>window.sidebarCurrent = {name: 'LocalServerCertificateHandle', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>btls</a>::<wbr><a href='index.html'>server_certificates</a>::<wbr><a class='struct' href=''>LocalServerCertificateHandle</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/btls/server_certificates/local.rs.html#944-949' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct LocalServerCertificateHandle { /* fields omitted */ }</pre><div class='docblock'><p>Handle for local certificate.</p>
+
+<p>This handle is used for referencing local certificates, for adding or updating staple data.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../../btls/server_certificates/struct.LocalServerCertificateHandle.html' title='btls::server_certificates::LocalServerCertificateHandle'>LocalServerCertificateHandle</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/server_certificates/local.rs.html#973-1276' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clear_ocsp_staple' class='method'><span id='clear_ocsp_staple.v' class='invisible'><code>fn <a href='#method.clear_ocsp_staple' class='fnname'>clear_ocsp_staple</a>(&amp;mut self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;'static, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></span></h4>
+<div class='docblock'><p>Clear OCSP stapling for certificate.</p>
+
+<h1 id='parameters' class='section-header'><a href='#parameters'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The certificate to update.</li>
+</ul>
+
+<h1 id='failures' class='section-header'><a href='#failures'>Failures:</a></h1>
+<ul>
+<li>If operation fails, it returns cause of failure as string.</li>
+</ul>
+
+<h1 id='notes' class='section-header'><a href='#notes'>Notes:</a></h1>
+<ul>
+<li>OCSP multishot is cleared as well.</li>
+</ul>
+</div><h4 id='method.set_ocsp_staple' class='method'><span id='set_ocsp_staple.v' class='invisible'><code>fn <a href='#method.set_ocsp_staple' class='fnname'>set_ocsp_staple</a>&lt;R:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Read.html' title='std::io::Read'>IoRead</a>&gt;(&amp;mut self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; staple: &amp;mut R,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;'static, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></span></h4>
+<div class='docblock'><p>Add or update OCSP stapling for certificate.</p>
+
+<h1 id='parameters-1' class='section-header'><a href='#parameters-1'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The certificate to update.</li>
+<li><code>staple</code>: The OCSP staple data to associate.</li>
+<li><code>name</code>: Name of OCSP staple to use in error messages.</li>
+</ul>
+
+<h1 id='failures-1' class='section-header'><a href='#failures-1'>Failures:</a></h1>
+<ul>
+<li>If operation fails, it returns cause of failure as string.</li>
+</ul>
+
+<h1 id='notes-1' class='section-header'><a href='#notes-1'>Notes:</a></h1>
+<ul>
+<li>The data is in raw ASN.1 form.</li>
+</ul>
+
+<h1 id='notes-2' class='section-header'><a href='#notes-2'>Notes:</a></h1>
+<ul>
+<li>OCSP multishot is cleared as well.</li>
+</ul>
+</div><h4 id='method.set_ocsp_staple_file' class='method'><span id='set_ocsp_staple_file.v' class='invisible'><code>fn <a href='#method.set_ocsp_staple_file' class='fnname'>set_ocsp_staple_file</a>&lt;P:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>&lt;<a class='struct' href='../../btls/test/struct.Path.html' title='btls::test::Path'>Path</a>&gt;&gt;(&amp;mut self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; staple: P)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;'static, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></span></h4>
+<div class='docblock'><p>Add or update OCSP stapling for certificate from file.</p>
+
+<h1 id='parameters-2' class='section-header'><a href='#parameters-2'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The certificate to update.</li>
+<li><code>staple</code>: The name of file to load OCSP staple data from.</li>
+</ul>
+
+<h1 id='failures-2' class='section-header'><a href='#failures-2'>Failures:</a></h1>
+<ul>
+<li>If operation fails, it returns cause of failure as string.</li>
+</ul>
+
+<h1 id='notes-3' class='section-header'><a href='#notes-3'>Notes:</a></h1>
+<ul>
+<li>The data is in raw ASN.1 form.</li>
+</ul>
+</div><h4 id='method.set_ocsp_staple_file_multishot' class='method'><span id='set_ocsp_staple_file_multishot.v' class='invisible'><code>fn <a href='#method.set_ocsp_staple_file_multishot' class='fnname'>set_ocsp_staple_file_multishot</a>&lt;P:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>&lt;<a class='struct' href='../../btls/test/struct.Path.html' title='btls::test::Path'>Path</a>&gt;&gt;(&amp;mut self, staple: P)</code></span></h4>
+<div class='docblock'><p>Add or update OCSP stapling for certificate from file, with auto-reload.</p>
+
+<p>This method differs from <code>.set_ocsp_staple_file()</code> in that the passed file is periodically reread as
+new OCSP stapling data (the first read attempt will occur synchronously with the call).</p>
+
+<h1 id='parameters-3' class='section-header'><a href='#parameters-3'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The certificate to update.</li>
+<li><code>staple</code>: The name of file to load OCSP staple data from.</li>
+</ul>
+
+<h1 id='notes-4' class='section-header'><a href='#notes-4'>Notes:</a></h1>
+<ul>
+<li>The data is in raw ASN.1 form.</li>
+</ul>
+</div><h4 id='method.get_ocsp_last_multishot_error' class='method'><span id='get_ocsp_last_multishot_error.v' class='invisible'><code>fn <a href='#method.get_ocsp_last_multishot_error' class='fnname'>get_ocsp_last_multishot_error</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>, <a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;'static, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;</code></span></h4>
+<div class='docblock'><p>Get error from last failed OCSP multishot operation.</p>
+
+<h1 id='parameters-4' class='section-header'><a href='#parameters-4'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The certificate to query.</li>
+</ul>
+
+<h1 id='failures-3' class='section-header'><a href='#failures-3'>Failures:</a></h1>
+<ul>
+<li>If the last OCSP multishot operation failed, returns the sequence number (first error is 1) of failure
+since the last <code>.set_ocsp_staple_file_multishot()</code> plus cause of failure as string.</li>
+</ul>
+
+<h1 id='notes-5' class='section-header'><a href='#notes-5'>Notes:</a></h1>
+<ul>
+<li>This gets cleared to no error on any successful OCSP multishot operation.</li>
+</ul>
+</div><h4 id='method.add_sct_staple' class='method'><span id='add_sct_staple.v' class='invisible'><code>fn <a href='#method.add_sct_staple' class='fnname'>add_sct_staple</a>&lt;R:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/io/trait.Read.html' title='std::io::Read'>IoRead</a>&gt;(&amp;mut self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; staple: &amp;mut R,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;'static, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></span></h4>
+<div class='docblock'><p>Add or update SCT stapling for certificate.</p>
+
+<h1 id='parameters-5' class='section-header'><a href='#parameters-5'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The certificate to update.</li>
+<li><code>staple</code>: The SCT staple data to associate.</li>
+<li><code>name</code>: Name of staple to use in error messages.</li>
+</ul>
+
+<h1 id='failures-4' class='section-header'><a href='#failures-4'>Failures:</a></h1>
+<ul>
+<li>If operation fails, it returns cause of failure as string.</li>
+</ul>
+
+<h1 id='notes-6' class='section-header'><a href='#notes-6'>Notes:</a></h1>
+<ul>
+<li>The data is in the raw <code>SerializedSct</code> format.</li>
+<li>Call this (or <code>.add_sct_staple_file()</code>) multiple times if you have multiple SCTs to send.</li>
+</ul>
+</div><h4 id='method.add_sct_staple_file' class='method'><span id='add_sct_staple_file.v' class='invisible'><code>fn <a href='#method.add_sct_staple_file' class='fnname'>add_sct_staple_file</a>&lt;P:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/core/convert/trait.AsRef.html' title='core::convert::AsRef'>AsRef</a>&lt;<a class='struct' href='../../btls/test/struct.Path.html' title='btls::test::Path'>Path</a>&gt;&gt;(&amp;mut self,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; staple: P)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='enum' href='https://doc.rust-lang.org/nightly/collections/borrow/enum.Cow.html' title='collections::borrow::Cow'>Cow</a>&lt;'static, <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>&gt;&gt;</code></span></h4>
+<div class='docblock'><p>Add or update SCT stapling for certificate from file.</p>
+
+<h1 id='parameters-6' class='section-header'><a href='#parameters-6'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The certificate to update.</li>
+<li><code>staple</code>: The name of file to load SCT staple data from.</li>
+</ul>
+
+<h1 id='failures-5' class='section-header'><a href='#failures-5'>Failures:</a></h1>
+<ul>
+<li>If operation fails, it returns cause of failure as string.</li>
+</ul>
+
+<h1 id='notes-7' class='section-header'><a href='#notes-7'>Notes:</a></h1>
+<ul>
+<li>The data is in the raw <code>SerializedSct</code> format.</li>
+<li>Call this (or <code>.add_sct_staple()</code>) multiple times if you have multiple SCTs to send.</li>
+</ul>
+</div><h4 id='method.delete' class='method'><span id='delete.v' class='invisible'><code>fn <a href='#method.delete' class='fnname'>delete</a>(&amp;self)</code></span></h4>
+<div class='docblock'><p>Delete the certificate from store.</p>
+
+<h1 id='parameters-7' class='section-header'><a href='#parameters-7'>Parameters:</a></h1>
+<ul>
+<li><code>self</code>: The certificate to delete.</li>
+</ul>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../btls/server_certificates/struct.LocalServerCertificateHandle.html' title='btls::server_certificates::LocalServerCertificateHandle'>LocalServerCertificateHandle</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/server_certificates/local.rs.html#943' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class='method'><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../btls/server_certificates/struct.LocalServerCertificateHandle.html' title='btls::server_certificates::LocalServerCertificateHandle'>LocalServerCertificateHandle</a></code></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class='method'><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='struct' href='../../btls/server_certificates/struct.LocalServerCertificateHandle.html' title='btls::server_certificates::LocalServerCertificateHandle'>LocalServerCertificateHandle</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/server_certificates/local.rs.html#952-960' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class='method'><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, another: &amp;Self) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class='method'><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='struct' href='../../btls/server_certificates/struct.LocalServerCertificateHandle.html' title='btls::server_certificates::LocalServerCertificateHandle'>LocalServerCertificateHandle</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/server_certificates/local.rs.html#962' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html' title='core::hash::Hash'>Hash</a> for <a class='struct' href='../../btls/server_certificates/struct.LocalServerCertificateHandle.html' title='btls::server_certificates::LocalServerCertificateHandle'>LocalServerCertificateHandle</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/server_certificates/local.rs.html#964-971' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.hash' class='method'><span id='hash.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html#tymethod.hash' class='fnname'>hash</a>&lt;H:&nbsp;<a class='trait' href='https://doc.rust-lang.org/nightly/core/hash/trait.Hasher.html' title='core::hash::Hasher'>Hasher</a>&gt;(&amp;self, state: &amp;mut H)</code></span></h4>
+<div class='docblock'><p>Feeds this value into the state given, updating the hasher as necessary.</p>
+</div><h4 id='method.hash_slice' class='method'><span id='hash_slice.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/hash/trait.Hash.html#method.hash_slice' class='fnname'>hash_slice</a>&lt;H&gt;(data: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[Self]</a>, state: &amp;mut H) <span class='where'>where H: <a class='trait' href='https://doc.rust-lang.org/nightly/core/hash/trait.Hasher.html' title='core::hash::Hasher'>Hasher</a></span></code><div class='since' title='Stable since Rust version 1.3.0'>1.3.0</div></span></h4>
+<div class='docblock'><p>Feeds a slice of this type into the state provided.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "btls";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `OcspValidationError` enum in crate `btls`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, OcspValidationError">
+
+    <title>btls::error::OcspValidationError - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>btls</a>::<wbr><a href='index.html'>error</a></p><script>window.sidebarCurrent = {name: 'OcspValidationError', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>btls</a>::<wbr><a href='index.html'>error</a>::<wbr><a class='enum' href=''>OcspValidationError</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/btls/certificate/ocsp.rs.html#13-215' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum OcspValidationError {
+    SCertParse(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>),
+    RCertParse(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>),
+    BasicResponse(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    ResponseSignatureError,
+    ResponderSignatureError,
+    ResponderNotYetValid(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>),
+    ResponderExpired(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>),
+    ResponderNotValidForUse,
+    ResponderNotIssuedByParent,
+    MultipleResponderCertificates,
+    ResponderCert(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    ResponderChainO(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    ResponderChainI(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    BrTbs(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    BrSignature(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    BrSignatureAlgorithm(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    OcspResponseStatus(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    OcspResponseBytesO(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    OcspResponseBytesI(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    Toplevel(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    OcspResponseType(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    OcspNotBasicResponse,
+    BadResponseStatus(<a class='enum' href='../../btls/error/enum.ResponseStatusError.html' title='btls::error::ResponseStatusError'>ResponseStatusError</a>),
+    OcspResponseData(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    BrSignatureSanity,
+    UnknownSignatureAlgo,
+    ResponderId(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    BadResponderId,
+    ProducedAt(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    ProducedAtParse(<a class='enum' href='../../btls/error/enum.TimestampParseError.html' title='btls::error::TimestampParseError'>TimestampParseError</a>),
+    ProducedAtInFuture(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>),
+    SingleResponses(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    SingleResponse(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='enum' href='../../btls/error/enum.OcspResponseError.html' title='btls::error::OcspResponseError'>OcspResponseError</a>),
+    NoSingleResponses,
+    Extensions(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>),
+    ExtractScts(<a class='enum' href='../../btls/error/enum.OcspExtensionsError.html' title='btls::error::OcspExtensionsError'>OcspExtensionsError</a>),
+    CertificateRevoked,
+    // some variants omitted
+}</pre><div class='docblock'><p>Error in validating OCSP response.</p>
+</div><h2 class='variants'>Variants</h2>
+<span id='variant.SCertParse' class='variant'><span id='SCertParse.v' class='invisible'><code>SCertParse(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>)</code></span></span><div class='docblock'><p>Error in parsing subject certificate.</p>
+
+<p>This error occurs if parsing of the subject certificate fails.</p>
+
+<p>The parameter is more detailed parsing error.</p>
+</div><span id='variant.RCertParse' class='variant'><span id='RCertParse.v' class='invisible'><code>RCertParse(<a class='enum' href='../../btls/error/enum.CertificateError.html' title='btls::error::CertificateError'>CertificateError</a>)</code></span></span><div class='docblock'><p>Error in parsing responder certificate.</p>
+
+<p>This error occurs if parsing of the responder certificate fails.</p>
+
+<p>The parameter is more detailed parsing error.</p>
+</div><span id='variant.BasicResponse' class='variant'><span id='BasicResponse.v' class='invisible'><code>BasicResponse(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error in reading BasicResponse</p>
+
+<p>This error occurs if reading of the BasicResponse fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.ResponseSignatureError' class='variant'><span id='ResponseSignatureError.v' class='invisible'><code>ResponseSignatureError</code></span></span><div class='docblock'><p>OCSP response signature does not verify.</p>
+
+<p>This error occurs if the signature in OCSP response does not verify.</p>
+</div><span id='variant.ResponderSignatureError' class='variant'><span id='ResponderSignatureError.v' class='invisible'><code>ResponderSignatureError</code></span></span><div class='docblock'><p>OCPS responder certificate signature does not verify.</p>
+
+<p>This error occurs if the signature in OCSP responder certificate does not verify.</p>
+</div><span id='variant.ResponderNotYetValid' class='variant'><span id='ResponderNotYetValid.v' class='invisible'><code>ResponderNotYetValid(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>)</code></span></span><div class='docblock'><p>Responder certificate is not yet valid.</p>
+
+<p>This error occurs if the responder certificate sent is not yet valid.</p>
+
+<p>The parameter is the timestamp when the validity of the responder certificate would begin.</p>
+</div><span id='variant.ResponderExpired' class='variant'><span id='ResponderExpired.v' class='invisible'><code>ResponderExpired(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>)</code></span></span><div class='docblock'><p>Responder certificate has expired.</p>
+
+<p>This error occurs if the responder certificate sent has expired.</p>
+
+<p>The parameter is the timestamp when the validity of the responder certificate ended.</p>
+</div><span id='variant.ResponderNotValidForUse' class='variant'><span id='ResponderNotValidForUse.v' class='invisible'><code>ResponderNotValidForUse</code></span></span><div class='docblock'><p>Responder certificate not valid EKU for OCSP responder.</p>
+
+<p>This error occurs if the responder certificate does not have valid ExtendedKeyUsage for OCSP.</p>
+</div><span id='variant.ResponderNotIssuedByParent' class='variant'><span id='ResponderNotIssuedByParent.v' class='invisible'><code>ResponderNotIssuedByParent</code></span></span><div class='docblock'><p>Responder certificate not issued by the issuer certificate.</p>
+
+<p>This error occurs if the responder certificate is not issued by the same issuer as the certificate being
+checked.</p>
+</div><span id='variant.MultipleResponderCertificates' class='variant'><span id='MultipleResponderCertificates.v' class='invisible'><code>MultipleResponderCertificates</code></span></span><div class='docblock'><p>Multiple responder certificates were sent.</p>
+
+<p>This error occurs if OCSP response contains multiple responder certificates.</p>
+</div><span id='variant.ResponderCert' class='variant'><span id='ResponderCert.v' class='invisible'><code>ResponderCert(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error reading responder certificate element.</p>
+
+<p>This error occurs if reading the responder certificate fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.ResponderChainO' class='variant'><span id='ResponderChainO.v' class='invisible'><code>ResponderChainO(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error reading responder chain element (outer).</p>
+
+<p>This error occurs if reading the outer element of responder certificate chain fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.ResponderChainI' class='variant'><span id='ResponderChainI.v' class='invisible'><code>ResponderChainI(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error reading responder chain element (inner).</p>
+
+<p>This error occurs if reading the inner element of responder certificate chain fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.BrTbs' class='variant'><span id='BrTbs.v' class='invisible'><code>BrTbs(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error reading TBS element of Basic Response.</p>
+
+<p>This error occurs if reading the to-be-signed data element of Basic Response fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.BrSignature' class='variant'><span id='BrSignature.v' class='invisible'><code>BrSignature(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error reading signature element of Basic Response.</p>
+
+<p>This error occurs if reading the signature element of Basic Response fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.BrSignatureAlgorithm' class='variant'><span id='BrSignatureAlgorithm.v' class='invisible'><code>BrSignatureAlgorithm(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error reading signature algorithm element of Basic Response.</p>
+
+<p>This error occurs if reading the signature algorithm element of Basic Response fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.OcspResponseStatus' class='variant'><span id='OcspResponseStatus.v' class='invisible'><code>OcspResponseStatus(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error reading response status element.</p>
+
+<p>This error occurs if reading the response status fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.OcspResponseBytesO' class='variant'><span id='OcspResponseBytesO.v' class='invisible'><code>OcspResponseBytesO(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error reading response bytes element (outer).</p>
+
+<p>This error occurs if reading the outer element of response bytes fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.OcspResponseBytesI' class='variant'><span id='OcspResponseBytesI.v' class='invisible'><code>OcspResponseBytesI(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error reading response bytes element (inner).</p>
+
+<p>This error occurs if reading the inner element of response bytes fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.Toplevel' class='variant'><span id='Toplevel.v' class='invisible'><code>Toplevel(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error reading top-level of OCSP response.</p>
+
+<p>This error occurs if reading the toplevel of the OCSP response fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.OcspResponseType' class='variant'><span id='OcspResponseType.v' class='invisible'><code>OcspResponseType(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error reading OCSP response type element.</p>
+
+<p>This error occurs if reading the OCSP response type fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.OcspNotBasicResponse' class='variant'><span id='OcspNotBasicResponse.v' class='invisible'><code>OcspNotBasicResponse</code></span></span><div class='docblock'><p>OCSP response is not Basic Response.</p>
+
+<p>This error occurs if the OCSP response is not a Basic Response.</p>
+</div><span id='variant.BadResponseStatus' class='variant'><span id='BadResponseStatus.v' class='invisible'><code>BadResponseStatus(<a class='enum' href='../../btls/error/enum.ResponseStatusError.html' title='btls::error::ResponseStatusError'>ResponseStatusError</a>)</code></span></span><div class='docblock'><p>Response status is bad</p>
+
+<p>This error occurs if the response status is bad (i.e. not OK).</p>
+
+<p>The parameter gives more detailed response status.</p>
+</div><span id='variant.OcspResponseData' class='variant'><span id='OcspResponseData.v' class='invisible'><code>OcspResponseData(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error in reading OCSP response data.</p>
+
+<p>This error occurs if reading of the OCSP response data fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.BrSignatureSanity' class='variant'><span id='BrSignatureSanity.v' class='invisible'><code>BrSignatureSanity</code></span></span><div class='docblock'><p>Basic Response signature fails sanity check.</p>
+
+<p>This error occurs if the Basic Response signature is clearly out of whack.</p>
+</div><span id='variant.UnknownSignatureAlgo' class='variant'><span id='UnknownSignatureAlgo.v' class='invisible'><code>UnknownSignatureAlgo</code></span></span><div class='docblock'><p>Unknown signature algorithm.</p>
+
+<p>This error occurs if the signature algorithm used is bad.</p>
+</div><span id='variant.ResponderId' class='variant'><span id='ResponderId.v' class='invisible'><code>ResponderId(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error in reading responder ID.</p>
+
+<p>This error occurs if reading of the OCSP responder ID fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.BadResponderId' class='variant'><span id='BadResponderId.v' class='invisible'><code>BadResponderId</code></span></span><div class='docblock'><p>Responder ID is of bad type.</p>
+
+<p>This error occurs if the responder ID is of unknown type.</p>
+</div><span id='variant.ProducedAt' class='variant'><span id='ProducedAt.v' class='invisible'><code>ProducedAt(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error in reading OCSP ProducedAt.</p>
+
+<p>This error occurs if the ProducedAt field of OCSP response can&#39;t be read.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.ProducedAtParse' class='variant'><span id='ProducedAtParse.v' class='invisible'><code>ProducedAtParse(<a class='enum' href='../../btls/error/enum.TimestampParseError.html' title='btls::error::TimestampParseError'>TimestampParseError</a>)</code></span></span><div class='docblock'><p>Error in parsing OCSP ProducedAt into timestamp.</p>
+
+<p>This error occurs if the ProducedAt field of OCSP response can&#39;t be parsed.</p>
+
+<p>The parameter is more detailed parsing error.</p>
+</div><span id='variant.ProducedAtInFuture' class='variant'><span id='ProducedAtInFuture.v' class='invisible'><code>ProducedAtInFuture(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.i64.html'>i64</a>)</code></span></span><div class='docblock'><p>The OCSP ProducedAt is in the future.</p>
+
+<p>This error occurs if the OCSP ProducedAt timestammp is in the future.</p>
+</div><span id='variant.SingleResponses' class='variant'><span id='SingleResponses.v' class='invisible'><code>SingleResponses(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error in reading Single Responses list.</p>
+
+<p>This error occurs if the Single Responses list field of OCSP response can&#39;t be read.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.SingleResponse' class='variant'><span id='SingleResponse.v' class='invisible'><code>SingleResponse(<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>,&nbsp;<a class='enum' href='../../btls/error/enum.OcspResponseError.html' title='btls::error::OcspResponseError'>OcspResponseError</a>)</code></span></span><div class='docblock'><p>Error in parsing Single Responses entry.</p>
+
+<p>This error occurs if parsing of OCSP Single Response fails.</p>
+
+<ul>
+<li>The 1st parameter is number of the esponse (starting from 0) that triggered the parsing error.</li>
+<li>The 2nd parameter is more detailed parsing error.</li>
+</ul>
+</div><span id='variant.NoSingleResponses' class='variant'><span id='NoSingleResponses.v' class='invisible'><code>NoSingleResponses</code></span></span><div class='docblock'><p>There are no Single Responses in OCSP response.</p>
+
+<p>This error occurs if the Single Responses list in OCSP response is empty.</p>
+</div><span id='variant.Extensions' class='variant'><span id='Extensions.v' class='invisible'><code>Extensions(<a class='enum' href='../../btls/error/enum.Asn1Error.html' title='btls::error::Asn1Error'>Asn1Error</a>)</code></span></span><div class='docblock'><p>Error in reading OCSP extensions.</p>
+
+<p>This error occurs if reading of the toplevel of OCSP extensions fails.</p>
+
+<p>The parameter is more detailed reading error.</p>
+</div><span id='variant.ExtractScts' class='variant'><span id='ExtractScts.v' class='invisible'><code>ExtractScts(<a class='enum' href='../../btls/error/enum.OcspExtensionsError.html' title='btls::error::OcspExtensionsError'>OcspExtensionsError</a>)</code></span></span><div class='docblock'><p>Error in extracting SCTs from OCSP response.</p>
+
+<p>This error occcurs if parsing SCTs from OCSP response fails.</p>
+
+<p>The parameter is more detailed parsing error.</p>
+</div><span id='variant.CertificateRevoked' class='variant'><span id='CertificateRevoked.v' class='invisible'><code>CertificateRevoked</code></span></span><div class='docblock'><p>Certificate has been REVOKED.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/certificate/ocsp.rs.html#12' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class='method'><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a></code></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class='method'><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/certificate/ocsp.rs.html#12' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/certificate/ocsp.rs.html#12' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.eq' class='method'><span id='eq.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class='method'><span id='ne.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, __arg_0: &amp;<a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/certificate/ocsp.rs.html#12' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html' title='core::fmt::Display'>Display</a> for <a class='enum' href='../../btls/error/enum.OcspValidationError.html' title='btls::error::OcspValidationError'>OcspValidationError</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/btls/certificate/ocsp.rs.html#375-429' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt-1' class='method'><span id='fmt.v-1' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, fmt: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/result/enum.Result.html' title='core::result::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>()</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Error.html' title='core::fmt::Error'>FmtError</a>&gt;</code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "btls";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
