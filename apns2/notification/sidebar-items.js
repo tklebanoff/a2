@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Notification","The Remote Notification."],["NotificationOptions","Request headers."]]});

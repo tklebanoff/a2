@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["DataRepresentation","Data representation"],["LogHashFunction","Hash function used by log."]],"struct":[["HostSpecificPin","Host-specific certificate pin / trust anchor."],["TrustAnchor","A trust anchor."],["TrustedLog","A trusted log."]]});

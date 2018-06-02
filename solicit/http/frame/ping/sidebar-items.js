@@ -1,1 +1,0 @@
-initSidebarItems({"constant":[["PING_FRAME_LEN","Ping frames are always 8 bytes"],["PING_FRAME_TYPE","The frame type of the `PING` frame."]],"struct":[["PingFlag",""],["PingFrame","The struct represents the `PINg` HTTP/2 frame."]]});

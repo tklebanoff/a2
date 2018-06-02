@@ -1,1 +1,0 @@
-initSidebarItems({"trait":[["FrameBuilder","A trait that provides additional methods for serializing HTTP/2 frames."]]});
