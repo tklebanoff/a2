@@ -164,16 +164,16 @@
     <span class="doccomment">/// A problem connecting to APNs servers.</span>
     <span class="ident">ConnectionError</span>,
     <span class="doccomment">/// APNs couldn&#39;t response in a timely manner, if using</span>
-    <span class="doccomment">/// [send_with_timeout](/a2/client/struct.Client.html#method.send_with_timeout)</span>
+    <span class="doccomment">/// [send_with_timeout](client/struct.Client.html#method.send_with_timeout)</span>
     <span class="ident">TimeoutError</span>,
     <span class="doccomment">/// Couldn&#39;t generate an APNs token with the given key.</span>
     <span class="ident">SignerError</span>(<span class="ident">String</span>),
     <span class="doccomment">/// APNs couldn&#39;t accept the notification. Contains</span>
-    <span class="doccomment">/// [Response](/a2/response/struct.Response.html) with additional</span>
+    <span class="doccomment">/// [Response](response/struct.Response.html) with additional</span>
     <span class="doccomment">/// information.</span>
     <span class="ident">ResponseError</span>(<span class="ident">Response</span>),
     <span class="doccomment">/// Invalid option values given in</span>
-    <span class="doccomment">/// [NotificationOptions](/a2/request/notification/struct.NotificationOptions.html)</span>
+    <span class="doccomment">/// [NotificationOptions](request/notification/struct.NotificationOptions.html)</span>
     <span class="ident">InvalidOptions</span>(<span class="ident">String</span>),
     <span class="doccomment">/// TLS connection failed</span>
     <span class="ident">TlsError</span>(<span class="ident">String</span>),
