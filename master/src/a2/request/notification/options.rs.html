@@ -177,37 +177,35 @@
 <span id="120">120</span>
 <span id="121">121</span>
 <span id="122">122</span>
-<span id="123">123</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="ident">error</span>::<span class="ident">Error</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CollapseId</span> {
-    <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">String</span>,
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CollapseId</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
 }
 
 <span class="doccomment">/// A collapse-id container. Will not allow bigger id&#39;s than 64 bytes.</span>
-<span class="kw">impl</span> <span class="ident">CollapseId</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;&gt;</span>(<span class="ident">value</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">CollapseId</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">value</span>.<span class="ident">into</span>();
-        <span class="kw">if</span> <span class="ident">s</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">64</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">CollapseId</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">value</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">CollapseId</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">if</span> <span class="ident">value</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">64</span> {
             <span class="prelude-val">Err</span>(<span class="ident">Error</span>::<span class="ident">InvalidOptions</span>(<span class="ident">String</span>::<span class="ident">from</span>(
                 <span class="string">&quot;The collapse-id is too big. Maximum 64 bytes.&quot;</span>,
             )))
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="ident">CollapseId</span> { <span class="ident">value</span>: <span class="ident">s</span> })
+            <span class="prelude-val">Ok</span>(<span class="ident">CollapseId</span> { <span class="ident">value</span>: <span class="ident">value</span> })
         }
     }
 }
 
 <span class="doccomment">/// Headers to specify options to the notification.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NotificationOptions</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NotificationOptions</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// A canonical UUID that identifies the notification. If there is an error</span>
     <span class="doccomment">/// sending the notification, APNs uses this value to identify the</span>
     <span class="doccomment">/// notification to your server.</span>
-    <span class="kw">pub</span> <span class="ident">apns_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">apns_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
 
     <span class="doccomment">/// A UNIX epoch date expressed in seconds (UTC). This header identifies the</span>
     <span class="doccomment">/// date when the notification is no longer valid and can be discarded.</span>
@@ -236,16 +234,16 @@
     <span class="doccomment">/// If you are using a provider token instead of a certificate, you must</span>
     <span class="doccomment">/// specify a value for this request header. The topic you provide should be</span>
     <span class="doccomment">/// provisioned for the your team named in your developer account.</span>
-    <span class="kw">pub</span> <span class="ident">apns_topic</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">apns_topic</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
 
     <span class="doccomment">/// Multiple notifications with the same collapse identifier are displayed to the</span>
     <span class="doccomment">/// user as a single notification. The value of this key must not exceed 64</span>
     <span class="doccomment">/// bytes.</span>
-    <span class="kw">pub</span> <span class="ident">apns_collapse_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CollapseId</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">apns_collapse_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">CollapseId</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">NotificationOptions</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-&gt;</span> <span class="ident">NotificationOptions</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">NotificationOptions</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-&gt;</span> <span class="ident">NotificationOptions</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
         <span class="ident">NotificationOptions</span> {
             <span class="ident">apns_id</span>: <span class="prelude-val">None</span>,
             <span class="ident">apns_expiration</span>: <span class="prelude-val">None</span>,
@@ -290,7 +288,7 @@
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_collapse_id_under_64_chars</span>() {
         <span class="kw">let</span> <span class="ident">collapse_id</span> <span class="op">=</span> <span class="ident">CollapseId</span>::<span class="ident">new</span>(<span class="string">&quot;foo&quot;</span>).<span class="ident">unwrap</span>();
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;foo&quot;</span>), <span class="ident">collapse_id</span>.<span class="ident">value</span>);
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="string">&quot;foo&quot;</span>, <span class="ident">collapse_id</span>.<span class="ident">value</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>

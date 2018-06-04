@@ -88,9 +88,9 @@
 
 <span class="kw">use</span> <span class="ident">request</span>::<span class="ident">payload</span>::<span class="ident">Payload</span>;
 
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">NotificationBuilder</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">NotificationBuilder</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Generates the request payload to be send with the `Client`.</span>
-    <span class="kw">fn</span> <span class="ident">build</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;&gt;</span>(<span class="self">self</span>, <span class="ident">device_token</span>: <span class="ident">S</span>, <span class="ident">options</span>: <span class="ident">NotificationOptions</span>) <span class="op">-&gt;</span> <span class="ident">Payload</span>;
+    <span class="kw">fn</span> <span class="ident">build</span>(<span class="self">self</span>, <span class="ident">device_token</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="ident">options</span>: <span class="ident">NotificationOptions</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">Payload</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>;
 }
 </pre>
 </section>

@@ -160,9 +160,10 @@ dynamic hashmaps to generate the custom data.</p>
         <span class="string">&quot;Correct Horse Battery Stable&quot;</span>,
         <span class="ident">Endpoint</span>::<span class="ident">Production</span>).<span class="ident">unwrap</span>();
 
+    <span class="kw">let</span> <span class="ident">sending</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">send</span>(<span class="ident">payload</span>);
+
     <span class="ident">tokio</span>::<span class="ident">run</span>(<span class="ident">lazy</span>(<span class="kw">move</span> <span class="op">||</span> {
-        <span class="ident">client</span>
-            .<span class="ident">send</span>(<span class="ident">payload</span>)
+        <span class="ident">sending</span>
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">response</span><span class="op">|</span> {
                 <span class="macro">println</span><span class="macro">!</span>(<span class="string">&quot;Sent: {:?}&quot;</span>, <span class="ident">response</span>);
             })

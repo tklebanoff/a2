@@ -190,29 +190,32 @@
 <span id="133">133</span>
 <span id="134">134</span>
 <span id="135">135</span>
+<span id="136">136</span>
+<span id="137">137</span>
+<span id="138">138</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! Payload with `aps` and custom data</span>
 
 <span class="kw">use</span> <span class="ident">request</span>::<span class="ident">notification</span>::{<span class="ident">LocalizedAlert</span>, <span class="ident">NotificationOptions</span>};
 <span class="kw">use</span> <span class="ident">error</span>::<span class="ident">Error</span>;
-<span class="kw">use</span> <span class="ident">serde_json</span>::{<span class="self">self</span>, <span class="ident">Map</span>, <span class="ident">Value</span>};
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">HashMap</span>;
+<span class="kw">use</span> <span class="ident">serde_json</span>::{<span class="self">self</span>, <span class="ident">Value</span>};
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">collections</span>::<span class="ident">BTreeMap</span>;
 <span class="kw">use</span> <span class="ident">erased_serde</span>::<span class="ident">Serialize</span>;
 
 <span class="doccomment">/// The data and options for a push notification.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Payload</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Payload</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Send options</span>
-    <span class="kw">pub</span> <span class="ident">options</span>: <span class="ident">NotificationOptions</span>,
+    <span class="kw">pub</span> <span class="ident">options</span>: <span class="ident">NotificationOptions</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
     <span class="doccomment">/// The token for the receiving device</span>
-    <span class="kw">pub</span> <span class="ident">device_token</span>: <span class="ident">String</span>,
+    <span class="kw">pub</span> <span class="ident">device_token</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
     <span class="doccomment">/// The pre-defined notification payload</span>
-    <span class="kw">pub</span> <span class="ident">aps</span>: <span class="ident">APS</span>,
+    <span class="kw">pub</span> <span class="ident">aps</span>: <span class="ident">APS</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>,
     <span class="doccomment">/// Application specific payload</span>
-    <span class="kw">pub</span> <span class="ident">custom_data</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Value</span><span class="op">&gt;&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">data</span>: <span class="ident">BTreeMap</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="ident">Value</span><span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">Payload</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">Payload</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Client-specific custom data to be added in the payload.</span>
     <span class="doccomment">/// The `root_key` defines the JSON key in the root of the request</span>
     <span class="doccomment">/// data, and `data` the object containing custom data. The `data`</span>
@@ -228,10 +231,17 @@
     <span class="doccomment">/// # use a2::request::notification::{SilentNotificationBuilder, NotificationBuilder};</span>
     <span class="doccomment">/// # use std::collections::HashMap;</span>
     <span class="doccomment">/// # fn main() {</span>
-    <span class="doccomment">/// let mut payload = SilentNotificationBuilder::new().build(&quot;token&quot;, Default::default());</span>
+    <span class="doccomment">/// let mut payload = SilentNotificationBuilder::new()</span>
+    <span class="doccomment">///     .build(&quot;token&quot;, Default::default());</span>
     <span class="doccomment">/// let mut custom_data = HashMap::new();</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// custom_data.insert(&quot;foo&quot;, &quot;bar&quot;);</span>
     <span class="doccomment">/// payload.add_custom_data(&quot;foo_data&quot;, &amp;custom_data).unwrap();</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// assert_eq!(</span>
+    <span class="doccomment">///     &quot;{\&quot;aps\&quot;:{\&quot;content-available\&quot;:1},\&quot;foo_data\&quot;:{\&quot;foo\&quot;:\&quot;bar\&quot;}}&quot;,</span>
+    <span class="doccomment">///     &amp;payload.to_json_string().unwrap()</span>
+    <span class="doccomment">/// );</span>
     <span class="doccomment">/// # }</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
@@ -250,49 +260,45 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// let mut payload = SilentNotificationBuilder::new().build(&quot;token&quot;, Default::default());</span>
     <span class="doccomment">/// let mut custom_data = CompanyData { foo: &quot;bar&quot; };</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// payload.add_custom_data(&quot;foo_data&quot;, &amp;custom_data).unwrap();</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// assert_eq!(</span>
+    <span class="doccomment">///     &quot;{\&quot;aps\&quot;:{\&quot;content-available\&quot;:1},\&quot;foo_data\&quot;:{\&quot;foo\&quot;:\&quot;bar\&quot;}}&quot;,</span>
+    <span class="doccomment">///     &amp;payload.to_json_string().unwrap()</span>
+    <span class="doccomment">/// );</span>
     <span class="doccomment">/// # }</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_custom_data</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_custom_data</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">root_key</span>: <span class="ident">S</span>,
+        <span class="ident">root_key</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
         <span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="ident">Serialize</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="kw-2">mut</span> <span class="ident">map</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">custom_data</span> {
-            <span class="ident">map</span>.<span class="ident">insert</span>(<span class="ident">root_key</span>.<span class="ident">into</span>(), <span class="ident">serde_json</span>::<span class="ident">to_value</span>(<span class="ident">data</span>)<span class="question-mark">?</span>);
-        } <span class="kw">else</span> {
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">map</span> <span class="op">=</span> <span class="ident">HashMap</span>::<span class="ident">new</span>();
-            <span class="ident">map</span>.<span class="ident">insert</span>(<span class="ident">root_key</span>.<span class="ident">into</span>(), <span class="ident">serde_json</span>::<span class="ident">to_value</span>(<span class="ident">data</span>)<span class="question-mark">?</span>);
-            <span class="self">self</span>.<span class="ident">custom_data</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">map</span>);
-        }
+    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>, <span class="ident">Error</span><span class="op">&gt;</span>
+    <span class="kw">where</span>
+    {
+        <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">insert</span>(<span class="ident">root_key</span>, <span class="ident">serde_json</span>::<span class="ident">to_value</span>(<span class="ident">data</span>)<span class="question-mark">?</span>);
 
-        <span class="prelude-val">Ok</span>(())
+        <span class="prelude-val">Ok</span>(<span class="self">self</span>)
     }
 
     <span class="doccomment">/// Combine the APS payload and the custom data to a final payload JSON.</span>
     <span class="doccomment">/// Returns an error if serialization fails.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_json_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">payload</span> <span class="op">=</span> <span class="ident">Map</span>::<span class="ident">new</span>();
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_json_string</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Error</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">aps_data</span> <span class="op">=</span> <span class="ident">serde_json</span>::<span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">aps</span>)<span class="question-mark">?</span>;
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">ref</span> <span class="ident">data</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">custom_data</span> {
-            <span class="kw">for</span> (<span class="ident">key</span>, <span class="ident">value</span>) <span class="kw">in</span> <span class="ident">data</span> {
-                <span class="ident">payload</span>.<span class="ident">insert</span>(<span class="ident">key</span>.<span class="ident">clone</span>(), <span class="ident">value</span>.<span class="ident">clone</span>());
-            }
-        }
+        <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">insert</span>(<span class="string">&quot;aps&quot;</span>, <span class="ident">aps_data</span>);
 
-        <span class="ident">payload</span>.<span class="ident">insert</span>(<span class="ident">String</span>::<span class="ident">from</span>(<span class="string">&quot;aps&quot;</span>), <span class="ident">serde_json</span>::<span class="ident">to_value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">aps</span>)<span class="question-mark">?</span>);
-
-        <span class="prelude-val">Ok</span>(<span class="ident">serde_json</span>::<span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="ident">payload</span>)<span class="question-mark">?</span>)
+        <span class="prelude-val">Ok</span>(<span class="ident">serde_json</span>::<span class="ident">to_string</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>)<span class="question-mark">?</span>)
     }
 }
 
 <span class="doccomment">/// The pre-defined notification data.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;kebab-case&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">APS</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">APS</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The notification content. Can be empty for silent notifications.</span>
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip_serializing_if</span> <span class="op">=</span> <span class="string">&quot;Option::is_none&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">alert</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">APSAlert</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">alert</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">APSAlert</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;&gt;</span>,
 
     <span class="doccomment">/// A number shown on top of the app icon.</span>
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip_serializing_if</span> <span class="op">=</span> <span class="string">&quot;Option::is_none&quot;</span>)]</span>
@@ -300,7 +306,7 @@
 
     <span class="doccomment">/// The name of the sound file to play when user receives the notification.</span>
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip_serializing_if</span> <span class="op">=</span> <span class="string">&quot;Option::is_none&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">sound</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">sound</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
 
     <span class="doccomment">/// Set to one for silent notifications.</span>
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip_serializing_if</span> <span class="op">=</span> <span class="string">&quot;Option::is_none&quot;</span>)]</span>
@@ -309,7 +315,7 @@
     <span class="doccomment">/// When a notification includes the category key, the system displays the</span>
     <span class="doccomment">/// actions for that category as buttons in the banner or alert interface.</span>
     <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">skip_serializing_if</span> <span class="op">=</span> <span class="string">&quot;Option::is_none&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="ident">category</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">category</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span><span class="op">&gt;</span>,
 
     <span class="doccomment">/// If set to one, the app can change the notification content before</span>
     <span class="doccomment">/// displaying it to the user.</span>
@@ -320,11 +326,11 @@
 <span class="doccomment">/// Different notification content types.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>)]</span>
 <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">untagged</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">APSAlert</span> {
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">APSAlert</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// Text-only notification.</span>
-    <span class="ident">Plain</span>(<span class="ident">String</span>),
+    <span class="ident">Plain</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>),
     <span class="doccomment">/// A rich localized notification.</span>
-    <span class="ident">Localized</span>(<span class="ident">LocalizedAlert</span>),
+    <span class="ident">Localized</span>(<span class="ident">LocalizedAlert</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>),
 }
 </pre>
 </section>
