@@ -616,6 +616,9 @@
 <span id="559">559</span>
 <span id="560">560</span>
 <span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! The client module for sending requests and parsing responses</span>
 
@@ -632,9 +635,8 @@
 };
 
 <span class="kw">use</span> <span class="ident">hyper</span>::{
-    <span class="ident">Chunk</span>,
+    <span class="self">self</span>,
     <span class="ident">Client</span> <span class="kw">as</span> <span class="ident">HttpClient</span>,
-    <span class="ident">Request</span> <span class="kw">as</span> <span class="ident">HttpRequest</span>,
     <span class="ident">StatusCode</span>,
     <span class="ident">Body</span>
 };
@@ -762,8 +764,12 @@
                 <span class="ident">Error</span>::<span class="ident">ConnectionError</span>
             });
 
-        <span class="macro">trace</span><span class="macro">!</span>(<span class="string">&quot;Client::call requesting ({:?})&quot;</span>, <span class="ident">path</span>);
-        <span class="kw">let</span> <span class="ident">send_request_and_parse_response</span> <span class="op">=</span> <span class="ident">send_request</span>.<span class="ident">and_then</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">response</span><span class="op">|</span> {
+        <span class="macro">trace</span><span class="macro">!</span>(
+            <span class="string">&quot;Client::call requesting ({:?})&quot;</span>,
+            <span class="ident">path</span>
+        );
+
+        <span class="kw">let</span> <span class="ident">requesting</span> <span class="op">=</span> <span class="ident">send_request</span>.<span class="ident">and_then</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">response</span><span class="op">|</span> {
             <span class="macro">trace</span><span class="macro">!</span>(
                 <span class="string">&quot;Client::call got response status {} from ({:?})&quot;</span>,
                 <span class="ident">response</span>.<span class="ident">status</span>(),
@@ -784,28 +790,17 @@
                     }))
                 },
                 <span class="kw">_</span> <span class="op">=&gt;</span> {
-                    <span class="kw">let</span> <span class="ident">response_status</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">status</span>().<span class="ident">clone</span>();
-
-                    <span class="kw">let</span> <span class="ident">get_body</span> <span class="op">=</span> <span class="ident">response</span>
-                        .<span class="ident">into_body</span>()
-                        .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
-                            <span class="macro">trace</span><span class="macro">!</span>(<span class="string">&quot;Body error: {}&quot;</span>, <span class="ident">e</span>);
-                            <span class="ident">Error</span>::<span class="ident">ConnectionError</span>
-                        })
-                        .<span class="ident">concat2</span>();
-
-                    <span class="ident">Either</span>::<span class="ident">B</span>(<span class="ident">get_body</span>.<span class="ident">and_then</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">body_chunk</span><span class="op">|</span> {
+                    <span class="ident">Either</span>::<span class="ident">B</span>(
                         <span class="self">Self</span>::<span class="ident">handle_body</span>(
-                            <span class="ident">response_status</span>.<span class="ident">as_u16</span>(),
                             <span class="ident">apns_id</span>,
-                            <span class="ident">body_chunk</span>
+                            <span class="ident">response</span>
                         )
-                    }))
+                    )
                 }
             }
         });
 
-        <span class="ident">FutureResponse</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">send_request_and_parse_response</span>))
+        <span class="ident">FutureResponse</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">requesting</span>))
     }
 
     <span class="doccomment">/// Sends a notification with a timeout. Triggers `Error::TimeoutError` if</span>
@@ -820,33 +815,44 @@
     }
 
     <span class="kw">fn</span> <span class="ident">handle_body</span>(
-        <span class="ident">response_status</span>: <span class="ident">u16</span>,
         <span class="ident">apns_id</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-        <span class="ident">body_chunk</span>: <span class="ident">Chunk</span>,
+        <span class="ident">response</span>: <span class="ident">hyper</span>::<span class="ident">Response</span><span class="op">&lt;</span><span class="ident">Body</span><span class="op">&gt;</span>,
     ) <span class="op">-&gt;</span> <span class="kw">impl</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Item</span><span class="op">=</span><span class="ident">Response</span>, <span class="ident">Error</span><span class="op">=</span><span class="ident">Error</span><span class="op">&gt;</span> <span class="op">+</span> <span class="lifetime">&#39;static</span> <span class="op">+</span> <span class="ident">Send</span>
     {
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">body</span>) <span class="op">=</span> <span class="ident">str</span>::<span class="ident">from_utf8</span>(<span class="kw-2">&amp;</span><span class="ident">body_chunk</span>.<span class="ident">to_vec</span>()) {
-            <span class="ident">err</span>(<span class="ident">ResponseError</span>(<span class="ident">Response</span> {
-                <span class="ident">apns_id</span>: <span class="ident">apns_id</span>,
-                <span class="ident">error</span>: <span class="ident">serde_json</span>::<span class="ident">from_str</span>(<span class="ident">body</span>).<span class="ident">ok</span>(),
-                <span class="ident">code</span>: <span class="ident">response_status</span>,
-            }))
-        } <span class="kw">else</span> {
-            <span class="ident">err</span>(<span class="ident">ResponseError</span>(<span class="ident">Response</span> {
-                <span class="ident">apns_id</span>: <span class="prelude-val">None</span>,
-                <span class="ident">error</span>: <span class="prelude-val">None</span>,
-                <span class="ident">code</span>: <span class="ident">response_status</span>,
-            }))
-        }
+        <span class="kw">let</span> <span class="ident">response_status</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">status</span>().<span class="ident">clone</span>();
+
+        <span class="kw">let</span> <span class="ident">get_body</span> <span class="op">=</span> <span class="ident">response</span>
+            .<span class="ident">into_body</span>()
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">e</span><span class="op">|</span> {
+                <span class="macro">trace</span><span class="macro">!</span>(<span class="string">&quot;Body error: {}&quot;</span>, <span class="ident">e</span>);
+                <span class="ident">Error</span>::<span class="ident">ConnectionError</span>
+            })
+            .<span class="ident">concat2</span>();
+
+        <span class="ident">get_body</span>.<span class="ident">and_then</span>(<span class="kw">move</span> <span class="op">|</span><span class="ident">body_chunk</span><span class="op">|</span> {
+            <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">body</span>) <span class="op">=</span> <span class="ident">str</span>::<span class="ident">from_utf8</span>(<span class="kw-2">&amp;</span><span class="ident">body_chunk</span>.<span class="ident">to_vec</span>()) {
+                <span class="ident">err</span>(<span class="ident">ResponseError</span>(<span class="ident">Response</span> {
+                    <span class="ident">apns_id</span>: <span class="ident">apns_id</span>,
+                    <span class="ident">error</span>: <span class="ident">serde_json</span>::<span class="ident">from_str</span>(<span class="ident">body</span>).<span class="ident">ok</span>(),
+                    <span class="ident">code</span>: <span class="ident">response_status</span>.<span class="ident">as_u16</span>(),
+                }))
+            } <span class="kw">else</span> {
+                <span class="ident">err</span>(<span class="ident">ResponseError</span>(<span class="ident">Response</span> {
+                    <span class="ident">apns_id</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">error</span>: <span class="prelude-val">None</span>,
+                    <span class="ident">code</span>: <span class="ident">response_status</span>.<span class="ident">as_u16</span>(),
+                }))
+            }
+        })
     }
 
-    <span class="kw">fn</span> <span class="ident">build_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">payload</span>: <span class="ident">Payload</span>) <span class="op">-&gt;</span> <span class="ident">HttpRequest</span><span class="op">&lt;</span><span class="ident">Body</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">build_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">payload</span>: <span class="ident">Payload</span>) <span class="op">-&gt;</span> <span class="ident">hyper</span>::<span class="ident">Request</span><span class="op">&lt;</span><span class="ident">Body</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">path</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(
             <span class="string">&quot;https://{}/3/device/{}&quot;</span>,
             <span class="self">self</span>.<span class="ident">endpoint</span>, <span class="ident">payload</span>.<span class="ident">device_token</span>
         );
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">HttpRequest</span>::<span class="ident">builder</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">builder</span> <span class="op">=</span> <span class="ident">hyper</span>::<span class="ident">Request</span>::<span class="ident">builder</span>();
 
         <span class="ident">builder</span>.<span class="ident">uri</span>(<span class="kw-2">&amp;</span><span class="ident">path</span>);
         <span class="ident">builder</span>.<span class="ident">method</span>(<span class="string">&quot;POST&quot;</span>);
