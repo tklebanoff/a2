@@ -623,7 +623,7 @@
 <span class="doccomment">//! The client module for sending requests and parsing responses</span>
 
 <span class="kw">use</span> <span class="ident">signer</span>::<span class="ident">Signer</span>;
-<span class="kw">use</span> <span class="ident">alpn</span>::<span class="ident">AlpnConnector</span>;
+<span class="kw">use</span> <span class="ident">hyper_alpn</span>::<span class="ident">AlpnConnector</span>;
 <span class="kw">use</span> <span class="ident">error</span>::<span class="ident">Error</span>;
 <span class="kw">use</span> <span class="ident">error</span>::<span class="ident">Error</span>::<span class="ident">ResponseError</span>;
 
@@ -908,7 +908,7 @@
     <span class="kw">use</span> <span class="ident">request</span>::<span class="ident">notification</span>::<span class="ident">PlainNotificationBuilder</span>;
     <span class="kw">use</span> <span class="ident">request</span>::<span class="ident">notification</span>::<span class="ident">NotificationBuilder</span>;
     <span class="kw">use</span> <span class="ident">request</span>::<span class="ident">notification</span>::{<span class="ident">NotificationOptions</span>, <span class="ident">Priority</span>, <span class="ident">CollapseId</span>};
-    <span class="kw">use</span> <span class="ident">alpn</span>::<span class="ident">AlpnConnector</span>;
+    <span class="kw">use</span> <span class="ident">hyper_alpn</span>::<span class="ident">AlpnConnector</span>;
     <span class="kw">use</span> <span class="ident">hyper</span>::<span class="ident">Method</span>;
     <span class="kw">use</span> <span class="ident">http</span>::<span class="ident">header</span>::{<span class="ident">AUTHORIZATION</span>, <span class="ident">CONTENT_LENGTH</span>, <span class="ident">CONTENT_TYPE</span>};
     <span class="kw">use</span> <span class="ident">signer</span>::<span class="ident">Signer</span>;

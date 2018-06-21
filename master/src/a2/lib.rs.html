@@ -242,10 +242,6 @@
 <span id="185">185</span>
 <span id="186">186</span>
 <span id="187">187</span>
-<span id="188">188</span>
-<span id="189">189</span>
-<span id="190">190</span>
-<span id="191">191</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! # A2</span>
 <span class="doccomment">//!</span>
@@ -394,24 +390,20 @@
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">erased_serde</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">futures</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">hyper</span>;
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">hyper_alpn</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">openssl</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">rustls</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">serde</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">http</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">time</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">tokio</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">tokio_io</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">tokio_rustls</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">tokio_timer</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">webpki</span>;
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">webpki_roots</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">request</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">error</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">response</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">client</span>;
 <span class="kw">mod</span> <span class="ident">signer</span>;
-<span class="kw">mod</span> <span class="ident">alpn</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">request</span>::{
     <span class="ident">notification</span>::{
