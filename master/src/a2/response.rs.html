@@ -228,8 +228,49 @@
 <span id="228">228</span>
 <span id="229">229</span>
 <span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! The APNs response types</span>
+
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
 
 <span class="doccomment">/// The response data from APNs.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
@@ -362,6 +403,43 @@
 
     <span class="doccomment">/// The server is shutting down.</span>
     <span class="ident">Shutdown</span>,
+}
+
+<span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Display</span> <span class="kw">for</span> <span class="ident">ErrorReason</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
+            <span class="ident">ErrorReason</span>::<span class="ident">BadCollapseId</span> <span class="op">=&gt;</span> <span class="string">&quot;The collapse identifier exceeds the maximum allowed size.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">BadDeviceToken</span> <span class="op">=&gt;</span> <span class="string">&quot;The specified device token was bad. Verify that the request contains a valid token and that the token matches the environment.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">BadExpirationDate</span> <span class="op">=&gt;</span> <span class="string">&quot;The `apns_expiration` in `NotificationOptions` is bad.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">BadMessageId</span> <span class="op">=&gt;</span> <span class="string">&quot;The `apns_id` in `NotificationOptions` is bad.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">BadPriority</span> <span class="op">=&gt;</span> <span class="string">&quot;The `apns_priority` in `NotificationOptions` is bad.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">BadTopic</span> <span class="op">=&gt;</span> <span class="string">&quot;The `apns_topic` in `NotificationOptions` is bad.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">DeviceTokenNotForTopic</span> <span class="op">=&gt;</span> <span class="string">&quot;The device token does not match the specified topic.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">DuplicateHeaders</span> <span class="op">=&gt;</span> <span class="string">&quot;One or more headers were repeated.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">IdleTimeout</span> <span class="op">=&gt;</span> <span class="string">&quot;Idle time out.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">MissingDeviceToken</span> <span class="op">=&gt;</span> <span class="string">&quot;The device token is not specified in the payload.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">MissingTopic</span> <span class="op">=&gt;</span> <span class="string">&quot;The `apns_topic` of the `NotificationOptions` was not specified and was required. The `apns_topic` header is mandatory when the client is connected using the `CertificateConnector` and the included PKCS12 file includes multiple topics, or when using the `TokenConnector`.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">PayloadEmpty</span> <span class="op">=&gt;</span> <span class="string">&quot;The message payload was empty.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">TopicDisallowed</span> <span class="op">=&gt;</span> <span class="string">&quot;Pushing to this topic is not allowed.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">BadCertificate</span> <span class="op">=&gt;</span> <span class="string">&quot;The certificate was bad.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">BadCertificateEnvironment</span> <span class="op">=&gt;</span> <span class="string">&quot;The client certificate was for the wrong environment.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">ExpiredProviderToken</span> <span class="op">=&gt;</span> <span class="string">&quot;The provider token is stale and a new token should be generated.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">Forbidden</span> <span class="op">=&gt;</span> <span class="string">&quot;The specified action is not allowed.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">InvalidProviderToken</span> <span class="op">=&gt;</span> <span class="string">&quot;The provider token is not valid or the token signature could not be verified.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">MissingProviderToken</span> <span class="op">=&gt;</span> <span class="string">&quot;No provider certificate was used to connect to APNs and Authorization header was missing or no provider token was specified.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">BadPath</span> <span class="op">=&gt;</span> <span class="string">&quot;The request path value is bad.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">MethodNotAllowed</span> <span class="op">=&gt;</span> <span class="string">&quot;The request method was not `POST`.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">Unregistered</span> <span class="op">=&gt;</span> <span class="string">&quot;The device token is inactive for the specified topic. You should stop sending notifications to this token.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">PayloadTooLarge</span> <span class="op">=&gt;</span> <span class="string">&quot;The message payload was too large (4096 bytes)&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">TooManyProviderTokenUpdates</span> <span class="op">=&gt;</span> <span class="string">&quot;The provider token is being updated too often.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">TooManyRequests</span> <span class="op">=&gt;</span> <span class="string">&quot;Too many requests were made consecutively to the same device token.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">InternalServerError</span> <span class="op">=&gt;</span> <span class="string">&quot;An internal server error occurred.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">ServiceUnavailable</span> <span class="op">=&gt;</span> <span class="string">&quot;The service is unavailable.&quot;</span>,
+            <span class="ident">ErrorReason</span>::<span class="ident">Shutdown</span> <span class="op">=&gt;</span> <span class="string">&quot;The server is shutting down.&quot;</span>,
+        };
+
+        <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="ident">s</span>)
+    }
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
