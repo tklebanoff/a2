@@ -37,42 +37,43 @@
 //! ## Example sending a plain notification using token authentication:
 //!
 //! ```no_run
+//! #![feature(await_macro, async_await, futures_api)]
+//! #[macro_use] extern crate tokio;
+//!
 //! use a2::{PlainNotificationBuilder, NotificationBuilder, Client, Endpoint};
 //! use std::fs::File;
 //! use futures::future::lazy;
 //! use futures::Future;
 //!
 //! fn main() {
-//!     let mut builder = PlainNotificationBuilder::new("Hi there");
-//!     builder.set_badge(420);
-//!     builder.set_category("cat1");
-//!     builder.set_sound("ping.flac");
+//!     tokio::run_async(async move {
+//!         let mut builder = PlainNotificationBuilder::new("Hi there");
+//!         builder.set_badge(420);
+//!         builder.set_category("cat1");
+//!         builder.set_sound("ping.flac");
 //!
-//!     let payload = builder.build("device-token-from-the-user", Default::default());
-//!     let mut file = File::open("/path/to/private_key.p8").unwrap();
+//!         let payload = builder.build("device-token-from-the-user", Default::default());
+//!         let mut file = File::open("/path/to/private_key.p8").unwrap();
 //!
-//!     let client = Client::token(
-//!         &mut file,
-//!         "KEY_ID",
-//!         "TEAM_ID",
-//!         Endpoint::Production).unwrap();
+//!         let client = Client::token(
+//!             &mut file,
+//!             "KEY_ID",
+//!             "TEAM_ID",
+//!             Endpoint::Production).unwrap();
 //!
-//!     tokio::run(lazy(move || {
-//!         client
-//!             .send(payload)
-//!             .map(|response| {
-//!                 println!("Sent: {:?}", response);
-//!             })
-//!             .map_err(|error| {
-//!                 println!("Error: {:?}", error);
-//!            })
-//!     }));
+//!         match await!(client.send(payload)) {
+//!             Ok(response) => println!("Sent: {:?}", response),
+//!             Err(error) => eprintln!("Error: {:?}", error),
+//!         }
+//!     })
 //! }
 //! ```
 //!
 //! ## Example sending a silent notification with custom data using certificate authentication:
 //!
 //! ```no_run
+//! #![feature(await_macro, async_await, futures_api)]
+//! #[macro_use] extern crate tokio;
 //! #[macro_use] extern crate serde_derive;
 //!
 //! use a2::{Client, Endpoint, SilentNotificationBuilder, NotificationBuilder};
@@ -87,35 +88,32 @@
 //! }
 //!
 //! fn main() {
-//!     let tracking_data = CorporateData {
-//!         tracking_code: "999-212-UF-NSA",
-//!         is_paying_user: false,
-//!     };
+//!     tokio::run_async(async move {
+//!         let tracking_data = CorporateData {
+//!             tracking_code: "999-212-UF-NSA",
+//!             is_paying_user: false,
+//!         };
 //!
-//!     let mut payload = SilentNotificationBuilder::new()
-//!         .build("device-token-from-the-user", Default::default());
-//!     payload.add_custom_data("apns_gmbh", &tracking_data).unwrap();
+//!         let mut payload = SilentNotificationBuilder::new()
+//!             .build("device-token-from-the-user", Default::default());
+//!         payload.add_custom_data("apns_gmbh", &tracking_data).unwrap();
 //!
-//!     let mut file = File::open("/path/to/cert_db.p12").unwrap();
+//!         let mut file = File::open("/path/to/cert_db.p12").unwrap();
 //!
-//!     let client = Client::certificate(
-//!         &mut file,
-//!         "Correct Horse Battery Stable",
-//!         Endpoint::Production).unwrap();
+//!         let client = Client::certificate(
+//!             &mut file,
+//!             "Correct Horse Battery Stable",
+//!             Endpoint::Production).unwrap();
 //!
-//!     let sending = client.send(payload);
-//!
-//!     tokio::run(lazy(move || {
-//!         sending
-//!             .map(|response| {
-//!                 println!("Sent: {:?}", response);
-//!             })
-//!             .map_err(|error| {
-//!                 println!("Error: {:?}", error);
-//!            })
-//!     }));
+//!         match await!(client.send(payload)) {
+//!             Ok(response) => println!("Sent: {:?}", response),
+//!             Err(error) => eprintln!("Error: {:?}", error),
+//!         }
+//!     })
 //! }
 //! ```
+
+#![feature(await_macro, async_await, futures_api)]
 
 #[macro_use]
 extern crate serde_derive;
@@ -130,6 +128,9 @@ extern crate indoc;
 
 #[macro_use]
 extern crate log;
+
+#[macro_use]
+extern crate tokio;
 
 pub mod request;
 pub mod error;
@@ -158,7 +159,7 @@ pub use crate::response::{
 pub use crate::client::{
     Endpoint,
     Client,
-    FutureResponse,
 };
 
 pub use crate::error::Error;
+

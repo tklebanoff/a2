@@ -1,7 +1,6 @@
 //! Error and result module
 
-use crate::client::FutureResponse;
-use tokio_timer::TimeoutError;
+use tokio::timer::timeout;
 use std::error::Error as StdError;
 use std::io::Error as IoError;
 use serde_json::Error as SerdeError;
@@ -17,10 +16,6 @@ pub enum Error {
 
     /// A problem connecting to APNs servers.
     ConnectionError,
-
-    /// APNs couldn't response in a timely manner, if using
-    /// [send_with_timeout](client/struct.Client.html#method.send_with_timeout)
-    TimeoutError,
 
     /// Couldn't generate an APNs token with the given key.
     SignerError(String),
@@ -39,6 +34,10 @@ pub enum Error {
 
     /// Error reading the certificate or private key.
     ReadError(String),
+
+    /// APNs couldn't response in a timely manner, if using
+    /// [send_with_timeout](client/struct.Client.html#method.send_with_timeout)
+    TimeoutError,
 }
 
 impl<'a> fmt::Display for Error {
@@ -71,9 +70,15 @@ impl<'a> StdError for Error {
     }
 }
 
-impl From<TimeoutError<FutureResponse>> for Error {
-    fn from(_: TimeoutError<FutureResponse>) -> Error {
+impl From<timeout::Error<hyper::error::Error>> for Error {
+    fn from(_: timeout::Error<hyper::error::Error>) -> Error {
         Error::TimeoutError
+    }
+}
+
+impl From<hyper::error::Error> for Error {
+    fn from(_: hyper::error::Error) -> Error {
+        Error::ConnectionError
     }
 }
 

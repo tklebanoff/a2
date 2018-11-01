@@ -5,29 +5,21 @@ use hyper_alpn::AlpnConnector;
 use crate::error::Error;
 use crate::error::Error::ResponseError;
 
-use futures::{
-    Future,
-    Poll,
-    future::{err, ok, Either},
-    stream::Stream,
-};
-
 use hyper::{
     self,
     Client as HttpClient,
-    StatusCode,
     Body
 };
 
 use http::header::{AUTHORIZATION, CONTENT_LENGTH, CONTENT_TYPE};
 use crate::request::payload::Payload;
-use crate::response::Response;
+use crate::response::{Response, ErrorBody};
 use serde_json;
 use std::{fmt, str};
 use std::time::Duration;
 use openssl::pkcs12::Pkcs12;
 use std::io::Read;
-use tokio_timer::{Timeout, Timer};
+use tokio::prelude::*;
 
 /// The APNs service endpoint to connect.
 #[derive(Debug, Clone)]
@@ -61,7 +53,6 @@ pub struct Client {
     endpoint: Endpoint,
     signer: Option<Signer>,
     http_client: HttpClient<AlpnConnector>,
-    timer: Timer,
 }
 
 impl Client {
@@ -77,9 +68,8 @@ impl Client {
 
         Client {
             http_client: builder.build(connector),
-            signer: signer,
-            endpoint: endpoint,
-            timer: Timer::default(),
+            signer,
+            endpoint,
         }
     }
 
@@ -130,98 +120,39 @@ impl Client {
 
     /// Send a notification payload. Returns a future that needs to be given to
     /// an executor.
-    #[inline]
-    pub fn send<'a>(&self, payload: Payload<'a>) -> FutureResponse {
-        let request = self.build_request(payload);
-        let path = format!("{}", request.uri());
-
-        let send_request = self.http_client
-            .request(request)
-            .map_err(|e| {
-                trace!("Request error: {}", e);
-                Error::ConnectionError
-            });
-
-        trace!(
-            "Client::call requesting ({:?})",
-            path
-        );
-
-        let requesting = send_request.and_then(move |response| {
-            trace!(
-                "Client::call got response status {} from ({:?})",
-                response.status(),
-                path
-            );
-
-            let apns_id = response.headers()
-                .get("apns-id")
-                .and_then(|s| s.to_str().ok())
-                .map(|id| String::from(id));
-
-            match response.status() {
-                StatusCode::OK => {
-                    Either::A(ok(Response {
-                        apns_id: apns_id,
-                        error: None,
-                        code: response.status().as_u16(),
-                    }))
-                },
-                _ => {
-                    Either::B(
-                        Self::handle_body(
-                            apns_id,
-                            response
-                        )
-                    )
-                }
-            }
-        });
-
-        FutureResponse(Box::new(requesting))
-    }
-
-    /// Sends a notification with a timeout. Triggers `Error::TimeoutError` if
-    /// the request takes too long.
-    #[inline]
-    pub fn send_with_timeout<'a>(
-        &self,
-        message: Payload<'a>,
-        timeout: Duration,
-    ) -> Timeout<FutureResponse> {
-        self.timer.timeout(self.send(message), timeout)
-    }
-
-    fn handle_body(
-        apns_id: Option<String>,
-        response: hyper::Response<Body>,
-    ) -> impl Future<Item=Response, Error=Error> + 'static + Send
+    pub async fn send<'a>(
+        &'a self,
+        payload: Payload<'a>
+    ) -> Result<Response, Error>
     {
-        let response_status = response.status().clone();
+        let request  = self.build_request(payload);
+        let response = await!(self.http_client.request(request))?;
+        let code     = response.status().as_u16();
 
-        let get_body = response
-            .into_body()
-            .map_err(|e| {
-                trace!("Body error: {}", e);
-                Error::ConnectionError
-            })
-            .concat2();
+        let apns_id = response.headers()
+            .get("apns-id")
+            .and_then(|s| s.to_str().ok())
+            .map(|id| String::from(id));
 
-        get_body.and_then(move |body_chunk| {
-            if let Ok(body) = str::from_utf8(&body_chunk.to_vec()) {
-                err(ResponseError(Response {
-                    apns_id: apns_id,
-                    error: serde_json::from_str(body).ok(),
-                    code: response_status.as_u16(),
-                }))
-            } else {
-                err(ResponseError(Response {
-                    apns_id: None,
-                    error: None,
-                    code: response_status.as_u16(),
-                }))
-            }
-        })
+        let error         = await!(Self::parse_response(response.into_body()))?;
+        let apns_response = Response { apns_id, error, code };
+
+        if code == 200 {
+            Ok(apns_response)
+        } else {
+            Err(ResponseError(apns_response))
+        }
+    }
+
+    async fn parse_response(
+        chunks: Body,
+    ) -> Result<Option<ErrorBody>, Error>
+    {
+        let body = await!(chunks.concat2())?;
+        let error_body = str::from_utf8(&body).ok()
+            .and_then(|body| serde_json::from_str(body).ok());
+
+        Ok(error_body)
     }
 
     fn build_request(&self, payload: Payload<'_>) -> hyper::Request<Body> {
@@ -260,23 +191,6 @@ impl Client {
 
         let request_body = Body::from(payload_json);
         builder.body(request_body).unwrap()
-    }
-}
-
-pub struct FutureResponse(Box<dyn Future<Item = Response, Error = Error> + Send + 'static>);
-
-impl fmt::Debug for FutureResponse {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        f.pad("Future<Response>")
-    }
-}
-
-impl Future for FutureResponse {
-    type Item = Response;
-    type Error = Error;
-
-    fn poll(&mut self) -> Poll<Self::Item, Self::Error> {
-        self.0.poll()
     }
 }
 
